@@ -5,6 +5,8 @@ class Camera(pygame.sprite.Group):
         super().__init__()
         self.screen = pygame.display.get_surface()
 
+        # Note to self: scale down the interior to 896 for police department
+
         self.map_surf = pygame.transform.scale2x(pygame.image.load('resources/maps/test-map-7.png').convert_alpha())
         self.map_rect = self.map_surf.get_rect(center = (0,0))
 

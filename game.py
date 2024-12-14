@@ -24,7 +24,7 @@ camera = Camera()
 buildall(camera)
 
 # Initialize Player
-player = Player(camera,buildings_group)
+player = Player(camera,(1695,1820),buildings_group)
 
 # Is game running?
 running = True

@@ -2,7 +2,7 @@ import pygame
 from os import listdir
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self,group,othergroups_col):
+    def __init__(self,group,pos,othergroups_col=0):
         super().__init__(group)
 
         file_path = 'resources/entities/player'
@@ -16,7 +16,7 @@ class Player(pygame.sprite.Sprite):
         }
 
         self.image = self.frames[self.facing][self.animation_index]
-        self.rect = self.image.get_rect(center=(1695,1820)) # OG: 1710, 1820; Testing: 1710, 930; New: 1695, 1820
+        self.rect = self.image.get_rect(center=(pos)) # OG: 1710, 1820; Testing: 1710, 930; New: 1695, 1820; Interior Test: 848,910
         self.hitbox = self.rect.inflate(-75,-75)
         self.direction = pygame.math.Vector2()
         self.speed = 3
@@ -65,6 +65,9 @@ class Player(pygame.sprite.Sprite):
 
 
     def collision_check(self,direction):
+        if self.othergroups == 0:
+            return
+
         for sprite in self.othergroups:
             if direction == 'h' and sprite.hitbox.colliderect(self.hitbox):
                 if self.direction.x > 0:
