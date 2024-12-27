@@ -222,7 +222,7 @@
   <object id="221" gid="867" x="224" y="384" width="32" height="32"/>
  </objectgroup>
  <group id="19" name="Hitbox" visible="0">
-  <objectgroup id="15" name="Wall-Hitbox">
+  <objectgroup id="15" name="Wall-Hitbox" visible="0">
    <object id="226" x="0.666667" y="0.666667" width="447.333" height="63.3333"/>
    <object id="227" x="-0.333333" y="-0.333333" width="14.6667" height="383.667"/>
    <object id="229" x="433.75" y="0" width="16.25" height="384.75"/>
@@ -232,7 +232,7 @@
    <object id="233" x="256.333" y="160.667" width="13.5417" height="94"/>
    <object id="234" x="256.063" y="288" width="14" height="95.9375"/>
   </objectgroup>
-  <objectgroup id="16" name="Object-Hitbox">
+  <objectgroup id="16" name="Object-Hitbox" visible="0">
    <object id="235" x="14" y="45.6667" width="179.667" height="39"/>
    <object id="236" x="38.3333" y="124.667" width="147.667" height="31.3333"/>
    <object id="237" x="15" y="200" width="189.667" height="28.6667"/>
@@ -248,10 +248,10 @@
    <object id="249" x="353.25" y="181.75" width="81.25" height="10.25"/>
    <object id="250" x="392.5" y="135" width="28.25" height="17.5"/>
   </objectgroup>
-  <objectgroup id="17" name="Stair-Hitbox">
+  <objectgroup id="17" name="Stair-Hitbox" visible="0">
    <object id="251" x="256" y="58.75" width="27.25" height="34.25"/>
   </objectgroup>
-  <objectgroup id="18" name="Outdoor-Hitbox">
+  <objectgroup id="18" name="Outdoor-Hitbox" visible="0">
    <object id="252" x="192" y="337.75" width="64.25" height="20.25"/>
   </objectgroup>
  </group>

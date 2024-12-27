@@ -2,6 +2,8 @@ import pygame
 from player import Player
 from camera import Camera
 from buildings import Buildings,buildall,buildings_group
+import settings
+from map import render_map
 
 
 # Initialize Pygame
@@ -21,10 +23,16 @@ clock = pygame.time.Clock()
 camera = Camera()
 
 # Initialize Buildings
-buildall(camera)
+# buildall(camera)
 
-# Initialize Player
-player = Player(camera,(1695,1820),buildings_group)
+# # Active Sprites for collisions
+# settings.active_sprites.add(buildings_group)
+
+# Initialize Map
+render_map("Toms-Diner",camera)
+
+# Initialize Player (1685,1850)
+player = Player(camera,(0,0),settings.active_sprites)
 
 # Is game running?
 running = True
@@ -46,6 +54,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    screen.fill('black')
     camera.render(player.rect)
     camera.update()
 

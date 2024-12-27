@@ -1,3 +1,8 @@
+import pygame
+
+# Sprites Group for Collisions
+active_sprites = pygame.sprite.Group()
+
 # Game States and Booleans
 
 onMainMenu = False

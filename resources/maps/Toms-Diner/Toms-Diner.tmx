@@ -3,8 +3,8 @@
  <tileset firstgid="1" source="../Tilesets/RoomBuilder-32x.tsx"/>
  <tileset firstgid="392" source="../Tilesets/Interiors-32x.tsx"/>
  <tileset firstgid="1816" source="../Tilesets/Object-Tiles.tsx"/>
- <tileset firstgid="1880" source="../Tilesets/Police-Tileset-V9.tsx"/>
- <tileset firstgid="1924" source="../Tilesets/Small-Object-Tiles.tsx"/>
+ <tileset firstgid="1896" source="../Tilesets/Police-Tileset-V9.tsx"/>
+ <tileset firstgid="1940" source="../Tilesets/Small-Object-Tiles.tsx"/>
  <layer id="2" name="Ground" width="12" height="13">
   <data encoding="csv">
 220,220,220,220,220,0,0,0,0,0,0,0,
@@ -116,9 +116,9 @@
    <object id="187" gid="1840" x="287.364" y="413.32" width="56" height="56"/>
    <object id="188" gid="1832" x="37.3647" y="356.653" width="56" height="56"/>
    <object id="189" gid="1840" x="37.3647" y="412.653" width="56" height="56"/>
-   <object id="190" gid="1903" x="165.781" y="98.6532" width="52.5" height="52.5"/>
-   <object id="191" gid="1903" x="261.77" y="98.3918" width="52.5" height="52.5"/>
-   <object id="192" gid="1903" x="215.114" y="98.0699" width="52.5" height="52.5"/>
+   <object id="190" gid="1919" x="165.781" y="98.6532" width="52.5" height="52.5"/>
+   <object id="191" gid="1919" x="261.77" y="98.3918" width="52.5" height="52.5"/>
+   <object id="192" gid="1919" x="215.114" y="98.0699" width="52.5" height="52.5"/>
    <object id="193" gid="1853" x="8.96892" y="51.2782" width="41.2917" height="41.2917"/>
    <object id="194" gid="1861" x="8.96892" y="92.5699" width="41.2917" height="41.2917"/>
   </objectgroup>
@@ -126,10 +126,10 @@
    <object id="195" gid="611" x="125.875" y="57.6541" width="16.8624" height="16.8624"/>
    <object id="196" gid="627" x="141.51" y="66.8068" width="16.8624" height="16.8624"/>
    <object id="197" gid="628" x="136.151" y="56.8637" width="16.8624" height="16.8624"/>
-   <object id="198" gid="1960" x="66.5" y="48.5" width="16" height="16"/>
-   <object id="199" gid="1956" x="143.375" y="83.375" width="16" height="16"/>
-   <object id="200" gid="1970" x="49.8864" y="54.3409" width="16" height="16"/>
-   <object id="201" gid="1959" x="140.125" y="74" width="14" height="14"/>
+   <object id="198" gid="1976" x="66.5" y="48.5" width="16" height="16"/>
+   <object id="199" gid="1972" x="143.375" y="83.375" width="16" height="16"/>
+   <object id="200" gid="1986" x="49.8864" y="54.3409" width="16" height="16"/>
+   <object id="201" gid="1975" x="140.125" y="74" width="14" height="14"/>
   </objectgroup>
  </group>
  <group id="10" name="Wall-Outlines">
@@ -186,13 +186,13 @@
   </layer>
  </group>
  <group id="16" name="Hitboxes" visible="0">
-  <objectgroup id="15" name="Outdoor-Hitbox">
+  <objectgroup id="15" name="Outdoor-Hitbox" visible="0">
    <object id="230" x="161.5" y="376.167" width="60" height="17.8333"/>
   </objectgroup>
-  <objectgroup id="17" name="Get-Inside">
+  <objectgroup id="17" name="Get-Inside" visible="0">
    <object id="239" x="161" y="269.727" width="30.5455" height="18.0909"/>
   </objectgroup>
-  <objectgroup id="14" name="Object-Hitboxes">
+  <objectgroup id="14" name="Object-Hitboxes" visible="0">
    <object id="217" x="222" y="158.75" width="21.5" height="83.75"/>
    <object id="220" x="253.25" y="328.625" width="17.5" height="65.75"/>
    <object id="222" x="358.25" y="329.125" width="21.5" height="65.75"/>
@@ -206,7 +206,7 @@
    <object id="237" x="48.75" y="36" width="111.25" height="45.25"/>
    <object id="238" x="136.75" y="35.75" width="23.75" height="69.75"/>
   </objectgroup>
-  <objectgroup id="13" name="Wall-Hitboxes">
+  <objectgroup id="13" name="Wall-Hitboxes" visible="0">
    <object id="204" x="1" y="0.5" width="382" height="63"/>
    <object id="205" x="371.5" y="-2.5" width="12.5" height="397.5"/>
    <object id="206" x="351.818" y="153.667" width="32" height="38.3333"/>

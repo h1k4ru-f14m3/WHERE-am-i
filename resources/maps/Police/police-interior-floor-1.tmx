@@ -228,7 +228,7 @@
   <object id="170" gid="539" x="304" y="318" width="28.5" height="28.5"/>
  </objectgroup>
  <group id="20" name="Collisions" visible="0">
-  <objectgroup id="15" name="Walls_Collision_Hitbox">
+  <objectgroup id="15" name="Walls_Collision_Hitbox" visible="0">
    <object id="109" x="410.667" y="32.3333" width="5.41667" height="122"/>
    <object id="111" x="411.25" y="140.5" width="137.25" height="20.25"/>
    <object id="113" x="411.667" y="199.25" width="137.375" height="24.7083"/>
@@ -255,7 +255,7 @@
    <object id="162" x="420.727" y="66.5455" width="22.375" height="29.875"/>
    <object id="163" x="452.813" y="67.0625" width="22.375" height="29.375"/>
   </objectgroup>
-  <objectgroup id="17" name="Objects_Collision_Hitbox">
+  <objectgroup id="17" name="Objects_Collision_Hitbox" visible="0">
    <object id="132" x="238.75" y="38.625" width="138.25" height="34.7917"/>
    <object id="133" x="300.25" y="81.5152" width="13.75" height="6.94318"/>
    <object id="134" x="278.5" y="89.8333" width="57.5" height="16"/>
@@ -282,11 +282,11 @@
    <object id="157" x="455.227" y="59.0455" width="17.1818" height="13.3636"/>
    <object id="158" x="487.955" y="58.5" width="17.1818" height="13.3636"/>
   </objectgroup>
-  <objectgroup id="18" name="Stairs_Collision_Hitbox">
+  <objectgroup id="18" name="Stairs_Collision_Hitbox" visible="0">
    <object id="164" x="197.375" y="125.625" width="21.625" height="34.25"/>
    <object id="165" x="389.438" y="125.625" width="21.625" height="34.25"/>
   </objectgroup>
-  <objectgroup id="19" name="Outdoors_Collision_Hitbox">
+  <objectgroup id="19" name="Outdoors_Collision_Hitbox" visible="0">
    <object id="166" x="271.25" y="310" width="63" height="15"/>
   </objectgroup>
  </group>

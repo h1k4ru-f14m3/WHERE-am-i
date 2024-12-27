@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="../Tilesets/RoomBuilder-32x.tsx"/>
  <tileset firstgid="392" source="../Tilesets/Interiors-32x.tsx"/>
  <tileset firstgid="1816" source="../Tilesets/Object-Tiles.tsx"/>
- <tileset firstgid="1880" source="../Tilesets/Small-Object-Tiles.tsx"/>
+ <tileset firstgid="1896" source="../Tilesets/Small-Object-Tiles.tsx"/>
  <layer id="2" name="Ground" width="13" height="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -25,8 +25,8 @@
 </data>
  </layer>
  <objectgroup id="6" name="Door">
-  <object id="1" gid="803" x="288" y="223.125" width="35.125" height="35.125"/>
-  <object id="2" gid="787" x="288" y="188" width="35.125" height="35.125"/>
+  <object id="1" name="Lower" gid="803" x="288" y="223.125" width="35.125" height="35.125"/>
+  <object id="2" name="Upper" gid="787" x="288" y="188" width="35.125" height="35.125"/>
  </objectgroup>
  <layer id="3" name="Wall" width="13" height="16">
   <data encoding="csv">
@@ -215,11 +215,11 @@
    <object id="337" gid="715" x="76.4058" y="256.014" width="32" height="32"/>
    <object id="338" gid="699" x="76.4058" y="224.014" width="32" height="32"/>
    <object id="339" gid="683" x="76.4058" y="192.014" width="32" height="32"/>
-   <object id="340" gid="1903" x="382" y="110.5" width="27" height="27"/>
-   <object id="341" gid="1903" x="356.75" y="110.375" width="27" height="27"/>
-   <object id="342" gid="1903" x="331" y="110.375" width="27" height="27"/>
-   <object id="343" gid="1903" x="305.25" y="110.5" width="27" height="27"/>
-   <object id="344" gid="1903" x="383.833" y="131.5" width="27" height="27"/>
+   <object id="340" gid="1919" x="382" y="110.5" width="27" height="27"/>
+   <object id="341" gid="1919" x="356.75" y="110.375" width="27" height="27"/>
+   <object id="342" gid="1919" x="331" y="110.375" width="27" height="27"/>
+   <object id="343" gid="1919" x="305.25" y="110.5" width="27" height="27"/>
+   <object id="344" gid="1919" x="383.833" y="131.5" width="27" height="27"/>
    <object id="345" gid="715" x="370.667" y="255.666" width="32" height="32"/>
    <object id="346" gid="699" x="370.667" y="223.667" width="32" height="32"/>
    <object id="347" gid="683" x="370.667" y="191.667" width="32" height="32"/>
@@ -233,12 +233,12 @@
    <object id="383" gid="643" x="256" y="448" width="32" height="32"/>
   </objectgroup>
   <objectgroup id="8" name="Objects-2">
-   <object id="352" gid="1903" x="370.833" y="92.7083" width="27" height="27"/>
-   <object id="353" gid="1902" x="342.833" y="93.4583" width="24" height="24"/>
-   <object id="354" gid="1890" x="303.833" y="93.2083" width="16" height="16"/>
-   <object id="355" gid="1890" x="382.333" y="114.208" width="16" height="16"/>
-   <object id="356" gid="1873" x="111.833" y="452.708" width="32" height="32"/>
-   <object id="357" gid="1872" x="127.5" y="448.041" width="32" height="32"/>
+   <object id="352" name="Box-2" gid="1919" x="370.833" y="92.7083" width="27" height="27"/>
+   <object id="353" name="Box-1" gid="1918" x="342.833" y="93.4583" width="24" height="24"/>
+   <object id="354" name="Paper-2" gid="1906" x="303.833" y="93.2083" width="16" height="16"/>
+   <object id="355" name="Paper-1" gid="1906" x="382.333" y="114.208" width="16" height="16"/>
+   <object id="356" name="Basket-2" gid="1873" x="111.833" y="452.708" width="32" height="32"/>
+   <object id="357" name="Basket-1" gid="1872" x="127.5" y="448.041" width="32" height="32"/>
   </objectgroup>
  </group>
  <group id="9" name="Wall-Outlines">
@@ -284,7 +284,7 @@
   </layer>
  </group>
  <group id="15" name="Collisions_Hitboxes" visible="0">
-  <objectgroup id="11" name="Wall-Hitboxes">
+  <objectgroup id="11" name="Wall-Hitboxes" visible="0">
    <object id="358" x="2" y="179" width="286.5" height="44.5"/>
    <object id="359" x="320.5" y="179" width="92.5" height="44.5"/>
    <object id="360" x="2" y="1.33333" width="411.333" height="92"/>
@@ -292,7 +292,7 @@
    <object id="363" x="-4" y="479.667" width="421.333" height="14.8333"/>
    <object id="364" x="403" y="-3.33333" width="17" height="502.667"/>
   </objectgroup>
-  <objectgroup id="12" name="Object-Hitboxes">
+  <objectgroup id="12" name="Object-Hitboxes" visible="0">
    <object id="365" x="13.5" y="208" width="93.8333" height="27.25"/>
    <object id="366" x="116.333" y="207.667" width="117.667" height="27.6667"/>
    <object id="367" x="46.6667" y="274.333" width="164.667" height="26.3333"/>
@@ -307,10 +307,10 @@
    <object id="377" x="305" y="88" width="99.25" height="21.5"/>
    <object id="378" x="384" y="105" width="20.25" height="23.25"/>
   </objectgroup>
-  <objectgroup id="13" name="Door-Hitbox">
+  <objectgroup id="13" name="Door-Hitbox" visible="0">
    <object id="379" x="256.364" y="462.182" width="63.4545" height="18.1818"/>
   </objectgroup>
-  <objectgroup id="14" name="Get-Inside-Hitbox">
+  <objectgroup id="14" name="Get-Inside-Hitbox" visible="0">
    <object id="385" x="287.625" y="179" width="34.125" height="44.25"/>
   </objectgroup>
  </group>

@@ -2,7 +2,7 @@ import pygame
 from os import listdir
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self,group,pos,othergroups_col=0):
+    def __init__(self,group,pos,othergroups=0):
         super().__init__(group)
 
         file_path = 'resources/entities/player'
@@ -21,7 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2()
         self.speed = 3
 
-        self.othergroups = othergroups_col
+        self.othergroups = othergroups
 
 
     def input(self):

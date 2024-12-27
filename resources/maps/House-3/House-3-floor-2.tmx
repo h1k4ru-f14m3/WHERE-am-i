@@ -153,7 +153,7 @@
   </layer>
  </group>
  <group id="18" name="Hitbox" visible="0">
-  <objectgroup id="15" name="Wall-Hitbox">
+  <objectgroup id="15" name="Wall-Hitbox" visible="0">
    <object id="104" x="0.5" y="-1" width="447.5" height="65"/>
    <object id="105" x="256" y="96" width="128" height="31"/>
    <object id="106" x="352" y="189" width="94.5" height="33"/>
@@ -167,7 +167,7 @@
    <object id="115" x="0.666667" y="352" width="447.333" height="32"/>
    <object id="116" x="-2" y="-2.5" width="15.7273" height="388"/>
   </objectgroup>
-  <objectgroup id="16" name="Object-Hitbox">
+  <objectgroup id="16" name="Object-Hitbox" visible="0">
    <object id="118" x="142.25" y="47.25" width="99.25" height="33"/>
    <object id="119" x="162" y="110.25" width="74.5" height="18.25"/>
    <object id="120" x="18" y="61.25" width="17.5" height="23.5"/>
@@ -180,7 +180,7 @@
    <object id="127" x="237.667" y="208" width="64.375" height="68.6667"/>
    <object id="128" x="376.333" y="177" width="49" height="65.6667"/>
   </objectgroup>
-  <objectgroup id="17" name="Stair-Hitbox">
+  <objectgroup id="17" name="Stair-Hitbox" visible="0">
    <object id="129" x="332.25" y="64.5" width="52" height="31"/>
   </objectgroup>
  </group>
