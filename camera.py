@@ -36,6 +36,19 @@ class Camera(pygame.sprite.Group):
         if settings.onMainMap:
             self.screen.blit(self.map_surf,self.map_rect.center + self.offset)
 
+        # Load the Ground Layer
+        for sprite in settings.map_tiles:
+            self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
+        
         # for sprite in sorted(self.sprites(), key= lambda x: x.hitbox.centery):
-        for sprite in self.sprites():
+        # Load the objects and the player
+        for sprite in sorted(self.sprites(), key= lambda x: x.hitbox.centery):
+            if sprite in settings.map_tiles or sprite in settings.wall_outline_tiles or sprite in settings.wall_tiles:
+                continue
+            self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
+
+        # Load the Wall and its outlines
+        for sprite in settings.wall_tiles:
+            self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
+        for sprite in settings.wall_outline_tiles:
             self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
