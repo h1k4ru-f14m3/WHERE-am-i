@@ -81,8 +81,8 @@ class Player(pygame.sprite.Sprite):
                 else:
                     self.hitbox.top = sprite.hitbox.bottom
 
-            if self.hitbox.collidepoint(sprite.door):
-                print(sprite.type)
+            # if self.hitbox.collidepoint(sprite.door):
+            #     print(sprite.type)
 
         self.border_collision()
 

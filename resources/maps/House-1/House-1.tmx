@@ -50,7 +50,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <group id="13" name="Objects" visible="0">
+ <group id="13" name="Objects">
   <objectgroup id="6" name="Objects-1">
    <object id="2" gid="1548" x="13" y="220.667" width="32" height="32"/>
    <object id="4" gid="1565" x="45" y="252.667" width="32" height="32"/>
@@ -146,7 +146,7 @@
    <object id="168" gid="1847" x="389.091" y="206.545" width="42" height="42"/>
   </objectgroup>
  </group>
- <group id="11" name="Wall-Outline" visible="0">
+ <group id="11" name="Wall-Outline">
   <layer id="4" name="Wall-Outline-1" width="14" height="12">
    <data encoding="csv">
 41,64,64,64,64,64,64,64,64,64,64,64,64,40,
@@ -180,7 +180,7 @@
 </data>
   </layer>
  </group>
- <objectgroup id="16" name="Doors" visible="0">
+ <objectgroup id="16" name="Doors">
   <object id="211" gid="1889" x="247" y="128" width="32" height="32"/>
   <object id="212" gid="1881" x="247" y="98" width="32" height="32"/>
   <object id="213" gid="1881" x="169" y="98" width="32" height="32"/>
