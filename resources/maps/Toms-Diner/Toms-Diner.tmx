@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="12" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="245">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="12" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="266">
  <tileset firstgid="1" source="../Tilesets/RoomBuilder-32x.tsx"/>
  <tileset firstgid="392" source="../Tilesets/Interiors-32x.tsx"/>
  <tileset firstgid="1816" source="../Tilesets/Object-Tiles.tsx"/>
@@ -22,7 +22,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="7" name="Doors">
+ <objectgroup id="7" name="Doors-1">
   <object id="1" gid="803" x="31.781" y="192.492" width="32.5" height="32.5"/>
   <object id="2" gid="787" x="31.781" y="159.992" width="32.5" height="32.5"/>
   <object id="3" gid="803" x="319.719" y="192.508" width="32.5" height="32.5"/>
@@ -121,15 +121,13 @@
    <object id="192" gid="1919" x="215.114" y="98.0699" width="52.5" height="52.5"/>
    <object id="193" gid="1853" x="8.96892" y="51.2782" width="41.2917" height="41.2917"/>
    <object id="194" gid="1861" x="8.96892" y="92.5699" width="41.2917" height="41.2917"/>
-  </objectgroup>
-  <objectgroup id="12" name="Mini-Objects">
-   <object id="195" gid="611" x="125.875" y="57.6541" width="16.8624" height="16.8624"/>
-   <object id="196" gid="627" x="141.51" y="66.8068" width="16.8624" height="16.8624"/>
-   <object id="197" gid="628" x="136.151" y="56.8637" width="16.8624" height="16.8624"/>
-   <object id="198" gid="1976" x="66.5" y="48.5" width="16" height="16"/>
-   <object id="199" gid="1972" x="143.375" y="83.375" width="16" height="16"/>
-   <object id="200" gid="1986" x="49.8864" y="54.3409" width="16" height="16"/>
-   <object id="201" gid="1975" x="140.125" y="74" width="14" height="14"/>
+   <object id="259" gid="611" x="126.153" y="57.353" width="16.8624" height="16.8624"/>
+   <object id="260" gid="627" x="141.788" y="66.5057" width="16.8624" height="16.8624"/>
+   <object id="261" gid="628" x="136.429" y="56.5626" width="16.8624" height="16.8624"/>
+   <object id="262" gid="1976" x="66.7784" y="48.1989" width="16" height="16"/>
+   <object id="263" gid="1972" x="143.653" y="83.0739" width="16" height="16"/>
+   <object id="264" gid="1986" x="50.1648" y="54.0398" width="16" height="16"/>
+   <object id="265" gid="1975" x="140.403" y="73.6989" width="14" height="14"/>
   </objectgroup>
  </group>
  <group id="10" name="Wall-Outlines">

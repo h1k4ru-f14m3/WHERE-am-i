@@ -7,16 +7,15 @@ class Camera(pygame.sprite.Group):
         super().__init__()
         self.screen = pygame.display.get_surface()
 
-        # Note to self: scale down the interior to 896 for police department
+        
 
         if settings.onMainMap:
             self.map_surf = pygame.transform.scale2x(pygame.image.load('resources/maps/test-map-7.png').convert_alpha())
             self.map_rect = self.map_surf.get_rect(center = (0,0))
 
-        # map.render_map("House-1",self)
 
         self.offset = pygame.math.Vector2()
-        self.half_w = self.screen.get_size()[0] / 2 
+        self.half_w = self.screen.get_size()[0] / 2
         self.half_h = self.screen.get_size()[1] / 2
         
 
@@ -39,16 +38,19 @@ class Camera(pygame.sprite.Group):
         # Load the Ground Layer
         for sprite in settings.map_tiles:
             self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
+
+
+        for group in settings.all_sprites.values():
+            if len(group) <= 0: continue
+            for sprite in group:
+                self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
+            
         
-        # for sprite in sorted(self.sprites(), key= lambda x: x.hitbox.centery):
-        # Load the objects and the player
+        # Load the player
         for sprite in sorted(self.sprites(), key= lambda x: x.hitbox.centery):
-            if sprite in settings.map_tiles or sprite in settings.wall_outline_tiles or sprite in settings.wall_tiles:
+            if sprite in settings.map_tiles or any(sprite in group for group in settings.all_sprites.values()):
                 continue
+
             self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
 
-        # Load the Wall and its outlines
-        for sprite in settings.wall_tiles:
-            self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
-        for sprite in settings.wall_outline_tiles:
-            self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
+

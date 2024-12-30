@@ -123,10 +123,6 @@
    <object id="164" gid="826" x="358" y="307" width="32" height="32"/>
    <object id="165" gid="427" x="201" y="50" width="42" height="42"/>
    <object id="166" gid="435" x="201" y="92" width="42" height="42"/>
-   <object id="167" gid="837" x="277.053" y="153.273" width="32" height="32" rotation="270.067"/>
-   <object id="168" gid="838" x="277.091" y="121.273" width="32" height="32" rotation="270.067"/>
-   <object id="169" gid="853" x="309.053" y="153.31" width="32" height="32" rotation="270.067"/>
-   <object id="170" gid="854" x="309.091" y="121.31" width="32" height="32" rotation="270.067"/>
    <object id="171" gid="787" x="192" y="352" width="32" height="32"/>
    <object id="172" gid="788" x="224" y="352" width="32" height="32"/>
    <object id="173" gid="803" x="192" y="384" width="32" height="32"/>
@@ -181,7 +177,7 @@
 </data>
   </layer>
  </group>
- <objectgroup id="19" name="Doors">
+ <objectgroup id="19" name="Doors-2">
   <object id="175" gid="457" x="247" y="98" width="32" height="32"/>
   <object id="176" gid="465" x="247" y="128" width="32" height="32"/>
   <object id="177" gid="457" x="169" y="98" width="32" height="32"/>
