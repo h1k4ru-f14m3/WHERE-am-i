@@ -73,14 +73,9 @@
    <object id="27" gid="1879" x="310.5" y="268" width="40" height="40"/>
    <object id="28" gid="1861" x="263.333" y="260.667" width="45.3333" height="45.3333"/>
    <object id="29" gid="1853" x="263.333" y="215.333" width="45.3333" height="45.3333"/>
-   <object id="49" gid="751" x="397" y="327" width="32" height="32"/>
-   <object id="50" gid="735" x="397" y="295" width="32" height="32"/>
-   <object id="53" gid="730" x="370" y="279.333" width="32" height="32"/>
-   <object id="54" gid="746" x="370" y="311.333" width="32" height="32"/>
-   <object id="55" gid="730" x="329.333" y="277.333" width="32" height="32"/>
-   <object id="56" gid="746" x="329.333" y="309.333" width="32" height="32"/>
-   <object id="57" gid="730" x="288.667" y="277.333" width="32" height="32"/>
-   <object id="58" gid="746" x="288.667" y="309.333" width="32" height="32"/>
+   <object id="53" gid="730" x="370" y="288" width="32" height="32"/>
+   <object id="55" gid="730" x="329" y="288" width="32" height="32"/>
+   <object id="57" gid="730" x="288" y="288" width="32" height="32"/>
    <object id="69" gid="1888" x="359.667" y="106.667" width="75.5" height="75.5"/>
    <object id="70" gid="1844" x="318" y="84" width="50.5" height="50.5"/>
    <object id="89" gid="1173" x="266" y="28" width="32" height="32"/>

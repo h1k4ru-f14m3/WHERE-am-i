@@ -2,11 +2,11 @@ import pygame
 import settings
 import map
 
-class Camera(pygame.sprite.Group):
+class Camera(pygame.sprite.LayeredUpdates):
     def __init__(self):
         super().__init__()
         self.screen = pygame.display.get_surface()
-
+        self.layered_sprites = pygame.sprite.LayeredUpdates()
         
 
         if settings.onMainMap:
@@ -32,25 +32,26 @@ class Camera(pygame.sprite.Group):
         self.offset.x = -(player.center[0] - self.screen.get_size()[0] / 2)
         self.offset.y = -(player.center[1] - self.screen.get_size()[1] / 2)
 
+
         if settings.onMainMap:
             self.screen.blit(self.map_surf,self.map_rect.center + self.offset)
+
 
         # Load the Ground Layer
         for sprite in settings.map_tiles:
             self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
 
 
+        # Load Layers
         for group in settings.all_sprites.values():
             if len(group) <= 0: continue
             for sprite in group:
-                self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
-            
-        
-        # Load the player
-        for sprite in sorted(self.sprites(), key= lambda x: x.hitbox.centery):
-            if sprite in settings.map_tiles or any(sprite in group for group in settings.all_sprites.values()):
-                continue
+                self.layered_sprites.add(sprite)
 
+        # Render Every Sprite except the ground layer
+        all_sprites = list(self.layered_sprites.sprites() + [sprite for sprite in self.sprites() if sprite not in self.layered_sprites.sprites() and sprite not in settings.map_tiles])
+            
+        for sprite in all_sprites:
             self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
 
 

@@ -5,6 +5,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self,group,pos,othergroups=0):
         super().__init__(group)
 
+        self.is_player = True
         file_path = 'resources/entities/player'
         self.animation_index = 0
         self.facing = 'front'
@@ -20,6 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.hitbox = self.rect.inflate(-75,-75)
         self.direction = pygame.math.Vector2()
         self.speed = 3
+        
 
         self.othergroups = othergroups
 
@@ -44,6 +46,8 @@ class Player(pygame.sprite.Sprite):
             self.facing = 'right'
         else:
             self.direction.x = 0
+
+        self._layer = self.rect.bottom
 
 
     def animation(self):

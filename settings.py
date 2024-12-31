@@ -27,6 +27,8 @@ all_sprites = {
     "Doors-2": pygame.sprite.Group()
 }
 
+all_sprites_keys = list(all_sprites.keys())
+
 # Game States and Booleans
 
 onMainMenu = False
