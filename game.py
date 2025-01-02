@@ -31,11 +31,11 @@ if settings.onMainMap:
     # Active Sprites for collisions
     settings.active_sprites.add(buildings_group)
 else:
-    render_map("House-1",camera,settings.active_sprites)
+    render_map("House-3",camera,settings.active_sprites)
 
 
 # Initialize Player (1685,1850)
-player = Player(camera,(475,860),settings.active_sprites)
+player = Player(camera,(575,760),settings.active_sprites)
 
 # Is game running?
 running = True

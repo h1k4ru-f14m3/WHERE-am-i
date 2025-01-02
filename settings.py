@@ -1,30 +1,30 @@
 import pygame
 
-# Sprites Group for Collisions
-active_sprites = pygame.sprite.Group()
+# Sprites LayeredUpdates for Collisions
+active_sprites = pygame.sprite.LayeredUpdates()
 
 # The Ground Tiles
-map_tiles = pygame.sprite.Group()
+map_tiles = pygame.sprite.LayeredUpdates()
 
 # The Sprites to have y sort
-object_sprites = pygame.sprite.Group()
+object_sprites = pygame.sprite.LayeredUpdates()
 
 # Draw Order
 draworder = ["Objects-3", "Wall", "Objects-1", "Objects-2", "Wall-Outline-1", "Wall-Outline-2", "Wall-Outline-3"]
 
 # All Visible Sprites
 all_sprites = {
-    "Doors-1": pygame.sprite.Group(),
-    "Objects-3": pygame.sprite.Group(),
-    "Wall": pygame.sprite.Group(),
-    "Stairs-Obj": pygame.sprite.Group(),
-    "Stairs-Tiles": pygame.sprite.Group(),
-    "Objects-1": pygame.sprite.Group(),
-    "Objects-2": pygame.sprite.Group(),
-    "Wall-Outline-1": pygame.sprite.Group(),
-    "Wall-Outline-2": pygame.sprite.Group(),
-    "Wall-Outline-3": pygame.sprite.Group(),
-    "Doors-2": pygame.sprite.Group()
+    "Doors-1": pygame.sprite.LayeredUpdates(),
+    "Objects-3": pygame.sprite.LayeredUpdates(),
+    "Wall": pygame.sprite.LayeredUpdates(),
+    "Stairs-Obj": pygame.sprite.LayeredUpdates(),
+    "Stairs-Tiles": pygame.sprite.LayeredUpdates(),
+    "Objects-1": pygame.sprite.LayeredUpdates(),
+    "Objects-2": pygame.sprite.LayeredUpdates(),
+    "Wall-Outline-1": pygame.sprite.LayeredUpdates(),
+    "Wall-Outline-2": pygame.sprite.LayeredUpdates(),
+    "Wall-Outline-3": pygame.sprite.LayeredUpdates(),
+    "Doors-2": pygame.sprite.LayeredUpdates()
 }
 
 all_sprites_keys = list(all_sprites.keys())
