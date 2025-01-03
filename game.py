@@ -36,6 +36,7 @@ else:
 
 # Initialize Player (1685,1850)
 player = Player(camera,(575,760),settings.active_sprites)
+camera.load_map(player)
 
 # Is game running?
 running = True

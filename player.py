@@ -21,7 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.hitbox = self.rect.inflate(-75,-75)
         self.direction = pygame.math.Vector2()
         self.speed = 3
-        self._layer = 0
+        self._layer = 1
 
         self.othergroups = othergroups
 
