@@ -20,6 +20,7 @@ class Camera(pygame.sprite.LayeredUpdates):
 
 
     def load_map(self, player):
+        # Load the objects with their layer
         self.test_sprites = pygame.sprite.LayeredUpdates()
         index = 0
         for group in settings.all_sprites.values():
@@ -28,10 +29,6 @@ class Camera(pygame.sprite.LayeredUpdates):
             index += 1
 
         self.test_sprites.add(player)
-
-        
-        
-        
 
 
     def render(self,player):
@@ -57,49 +54,7 @@ class Camera(pygame.sprite.LayeredUpdates):
         for sprite in settings.map_tiles:
             self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
 
-        # Load Layers
-        # for group in settings.all_sprites.values():
-        #     if len(group) <= 0: continue
-        #     for sprite in group:
-        #         self.layered_sprites.add(sprite)
 
+        # Load Everything else except the ground
         for sprite in self.test_sprites:
             self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
-
-        # for sprite in sorted(self.sprites(), key=lambda x: x._layer):
-        #     if sprite in settings.map_tiles:
-        #         continue
-        #     self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
-            # print(f"{sprite}: {self.get_layer_of_sprite(sprite)}")
-
-        # Render Every Sprite except the ground layer
-        # player = pygame.sprite.LayeredUpdates()
-        # player.add([sprite for sprite in self.sprites() if sprite not in self.layered_sprites.sprites() and sprite not in settings.map_tiles])
-
-        # all_sprites = list(self.layered_sprites.sprites() + [sprite for sprite in self.sprites() if sprite not in self.layered_sprites.sprites() and sprite not in settings.map_tiles])
-        
-        # wall_outlines = [sprite for group in range(1,4) for sprite in settings.all_sprites[f"Wall-Outline-{group}"]]
-        # sorted_sprites = sorted(all_sprites, key=lambda x: x.hitbox.centery)
-
-        # test_sprites = pygame.sprite.LayeredUpdates()
-        # test_sprites.add([player.sprites() + wall_outlines])
-        # sorted_test_sprites = sorted(test_sprites, key=lambda x: x._layer)
-
-        # for sprite in sorted_test_sprites:
-        #     self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
-
-
-        # for sprite in player:
-        #     self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
-
-        # for sprite in wall_outlines:
-        #     self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
-
-        # self.screen.blit(player_sprite.image,player_sprite.rect.topleft + self.offset)
-
-        # for sprite in sorted(all_sprites, key=lambda x: x._layer):
-        #     self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
-
-        
-
-
