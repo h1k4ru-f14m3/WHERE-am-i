@@ -8,7 +8,7 @@ file_path = "resources/maps"
 
 
 def render_map(type,group,collision_group):
-    mapdata = pytmx.load_pygame(f"{file_path}/{type}/{type}-floor-2.tmx", pixelalpha=True)
+    mapdata = pytmx.load_pygame(f"{file_path}/{type}/{type}.tmx", pixelalpha=True)
 
     # Tile Layers
     for layer in mapdata.visible_tile_layers:
