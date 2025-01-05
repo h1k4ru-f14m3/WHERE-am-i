@@ -9,6 +9,7 @@ class Camera(pygame.sprite.LayeredUpdates):
         super().__init__()
         self.screen = pygame.display.get_surface()
         self.proximity_sprites = pygame.sprite.LayeredUpdates()
+        self.y_sort_sprites = pygame.sprite.LayeredUpdates()
 
         if settings.onMainMap:
             self.map_surf = pygame.transform.scale2x(pygame.image.load('resources/maps/test-map-7.png').convert_alpha())
@@ -52,15 +53,20 @@ class Camera(pygame.sprite.LayeredUpdates):
 
         layers = {}
         for sprite in self.proximity_sprites:
+            if sprite == player: continue
             # Add a conditional here so that sprites that have lower midbottom y than player midtop - x is skipped so it can be y sorted
             layers.update({sprite: sprite._layer})
+            if player.rect.centery > sprite.rect.centery:
+                self.y_sort_sprites.add(sprite, layer=self.test_sprites.get_layer_of_sprite(sprite))
+            elif sprite in self.y_sort_sprites:
+                self.y_sort_sprites.remove(sprite)
 
         closest_layer = sys.maxsize
         for i in layers.values():
             if i < closest_layer:
                 closest_layer = i
 
-        self.test_sprites.change_layer(player, closest_layer-1)
+        self.test_sprites.change_layer(player, closest_layer)
 
 
 
@@ -90,9 +96,9 @@ class Camera(pygame.sprite.LayeredUpdates):
 
         # Load Everything else except the ground
         for sprite in self.test_sprites:
-            # if sprite in self.proximity_sprites:
+            # if sprite in self.y_sort_sprites:
             #     continue
             self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
-            # print(f"{sprite}: {self.test_sprites.get_layer_of_sprite(sprite)}")
+            # print(f"{sprite}: {self.test_sprites.get_layer_of_sprite(sprite)}"
 
         # print(self.test_sprites.get_sprites_at(player.center))
