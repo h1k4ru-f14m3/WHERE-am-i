@@ -5,11 +5,11 @@
  <tileset firstgid="456" source="../Tilesets/32x32/32x32.tsx"/>
  <tileset firstgid="476" source="../Tilesets/32x64/32x64.tsx"/>
  <tileset firstgid="494" source="../Tilesets/64x32/64x32.tsx"/>
- <tileset firstgid="496" source="../Tilesets/64x64/64x64.tsx"/>
- <tileset firstgid="504" source="../Tilesets/64x96/64x96.tsx"/>
- <tileset firstgid="520" source="../Tilesets/96x64/96x64.tsx"/>
- <tileset firstgid="524" source="../Tilesets/96x96/96x96.tsx"/>
- <tileset firstgid="526" source="../Tilesets/160x64/160x64.tsx"/>
+ <tileset firstgid="497" source="../Tilesets/64x64/64x64.tsx"/>
+ <tileset firstgid="505" source="../Tilesets/64x96/64x96.tsx"/>
+ <tileset firstgid="521" source="../Tilesets/96x64/96x64.tsx"/>
+ <tileset firstgid="525" source="../Tilesets/96x96/96x96.tsx"/>
+ <tileset firstgid="527" source="../Tilesets/160x64/160x64.tsx"/>
  <layer id="2" name="Ground" width="13" height="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -55,32 +55,32 @@
  </layer>
  <group id="10" name="Objects">
   <objectgroup id="18" name="Objects-1">
-   <object id="404" gid="524" x="32" y="480" width="96" height="96"/>
-   <object id="406" gid="514" x="32" y="384" width="64" height="96"/>
-   <object id="407" gid="514" x="64" y="384" width="64" height="96"/>
-   <object id="408" gid="514" x="96" y="384" width="64" height="96"/>
-   <object id="409" gid="514" x="128" y="384" width="64" height="96"/>
-   <object id="410" gid="514" x="160" y="384" width="64" height="96"/>
-   <object id="414" gid="514" x="160" y="320" width="64" height="96"/>
-   <object id="415" gid="514" x="128" y="320" width="64" height="96"/>
-   <object id="416" gid="514" x="96" y="320" width="64" height="96"/>
-   <object id="417" gid="514" x="64" y="320" width="64" height="96"/>
-   <object id="418" gid="514" x="32" y="320" width="64" height="96"/>
-   <object id="419" gid="516" x="0" y="256" width="64" height="96"/>
-   <object id="420" gid="516" x="64" y="256" width="64" height="96"/>
-   <object id="421" gid="515" x="145" y="256" width="64" height="96"/>
-   <object id="422" gid="515" x="205" y="256" width="64" height="96"/>
-   <object id="423" gid="516" x="352" y="256" width="64" height="96"/>
-   <object id="424" gid="526" x="256" y="288" width="160" height="64"/>
-   <object id="425" gid="514" x="0" y="128" width="64" height="96"/>
-   <object id="426" gid="514" x="32" y="128" width="64" height="96"/>
-   <object id="427" gid="514" x="64" y="128" width="64" height="96"/>
-   <object id="428" gid="514" x="96" y="128" width="64" height="96"/>
-   <object id="429" gid="514" x="128" y="128" width="64" height="96"/>
-   <object id="430" gid="514" x="160" y="128" width="64" height="96"/>
-   <object id="431" gid="514" x="192" y="128" width="64" height="96"/>
-   <object id="432" gid="514" x="224" y="128" width="64" height="96"/>
-   <object id="433" gid="498" x="256" y="480" width="64" height="64"/>
+   <object id="404" gid="525" x="32" y="480" width="96" height="96"/>
+   <object id="406" gid="515" x="32" y="384" width="64" height="96"/>
+   <object id="407" gid="515" x="64" y="384" width="64" height="96"/>
+   <object id="408" gid="515" x="96" y="384" width="64" height="96"/>
+   <object id="409" gid="515" x="128" y="384" width="64" height="96"/>
+   <object id="410" gid="515" x="160" y="384" width="64" height="96"/>
+   <object id="414" gid="515" x="160" y="320" width="64" height="96"/>
+   <object id="415" gid="515" x="128" y="320" width="64" height="96"/>
+   <object id="416" gid="515" x="96" y="320" width="64" height="96"/>
+   <object id="417" gid="515" x="64" y="320" width="64" height="96"/>
+   <object id="418" gid="515" x="32" y="320" width="64" height="96"/>
+   <object id="419" gid="517" x="0" y="256" width="64" height="96"/>
+   <object id="420" gid="517" x="64" y="256" width="64" height="96"/>
+   <object id="421" gid="516" x="145" y="256" width="64" height="96"/>
+   <object id="422" gid="516" x="205" y="256" width="64" height="96"/>
+   <object id="423" gid="517" x="352" y="256" width="64" height="96"/>
+   <object id="424" gid="527" x="256" y="288" width="160" height="64"/>
+   <object id="425" gid="515" x="0" y="128" width="64" height="96"/>
+   <object id="426" gid="515" x="32" y="128" width="64" height="96"/>
+   <object id="427" gid="515" x="64" y="128" width="64" height="96"/>
+   <object id="428" gid="515" x="96" y="128" width="64" height="96"/>
+   <object id="429" gid="515" x="128" y="128" width="64" height="96"/>
+   <object id="430" gid="515" x="160" y="128" width="64" height="96"/>
+   <object id="431" gid="515" x="192" y="128" width="64" height="96"/>
+   <object id="432" gid="515" x="224" y="128" width="64" height="96"/>
+   <object id="433" gid="499" x="256" y="480" width="64" height="64"/>
    <object id="434" gid="415" x="379.413" y="106.426" width="27" height="27"/>
    <object id="435" gid="415" x="354.163" y="106.301" width="27" height="27"/>
    <object id="436" gid="415" x="328.413" y="106.301" width="27" height="27"/>
@@ -88,7 +88,7 @@
    <object id="438" gid="415" x="381.246" y="127.426" width="27" height="27"/>
    <object id="439" gid="459" x="114.5" y="449.091" width="32" height="32"/>
    <object id="441" gid="458" x="128" y="446.727" width="32" height="32"/>
-   <object id="446" gid="517" x="32" y="448" width="64" height="96"/>
+   <object id="446" gid="518" x="32" y="448" width="64" height="96"/>
   </objectgroup>
   <objectgroup id="19" name="Objects-2">
    <object id="440" gid="459" x="116.545" y="455.273" width="32" height="32"/>
@@ -140,7 +140,7 @@
 </data>
   </layer>
  </group>
- <group id="15" name="Collisions_Hitboxes">
+ <group id="15" name="Collisions_Hitboxes" visible="0">
   <objectgroup id="11" name="Wall-Hitboxes" visible="0">
    <object id="358" x="2" y="179" width="286.5" height="44.5"/>
    <object id="359" x="320.5" y="179" width="92.5" height="44.5"/>
@@ -167,7 +167,7 @@
   <objectgroup id="13" name="Door-Hitbox" visible="0">
    <object id="379" x="256.364" y="462.182" width="63.4545" height="18.1818"/>
   </objectgroup>
-  <objectgroup id="14" name="Get-Inside-Hitbox">
+  <objectgroup id="14" name="Get-Inside-Hitbox" visible="0">
    <object id="385" x="287.625" y="179" width="34.125" height="44.25"/>
   </objectgroup>
  </group>

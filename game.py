@@ -36,7 +36,7 @@ else:
     render_map("House-1",camera,settings.active_sprites)
 
 # Initialize Player (1685,1850)
-player = Player(camera,(475,860),settings.active_sprites)
+player = Player(camera,(475,860))
 
 # Is game running?
 running = True

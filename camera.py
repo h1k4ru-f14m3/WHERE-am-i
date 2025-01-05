@@ -1,6 +1,7 @@
 import pygame
 import settings
 import map
+from math import sqrt
 
 class Camera(pygame.sprite.Group):
     def __init__(self):
@@ -18,6 +19,18 @@ class Camera(pygame.sprite.Group):
         self.offset = pygame.math.Vector2()
         self.half_w = self.screen.get_size()[0] / 2 
         self.half_h = self.screen.get_size()[1] / 2
+
+    
+    def update_layer(self,player):
+        self.proximity_sprites = {}
+        proximity = 150
+        player_pos = player.rect.center
+        for sprite in self.sprites():
+            x = abs(player_pos[0] - sprite.rect.center[0])
+            y = abs(player_pos[1] - sprite.rect.center[1])
+
+            distance = sqrt(x**2 + y**2)
+            if distance <= proximity: self.proximity_sprites.update({sprite: distance})
         
 
     def render(self,player):
@@ -37,5 +50,5 @@ class Camera(pygame.sprite.Group):
             self.screen.blit(self.map_surf,self.map_rect.center + self.offset)
 
         # for sprite in sorted(self.sprites(), key= lambda x: x.hitbox.centery):
-        for sprite in self.sprites():
+        for sprite in sorted(self.sprites(), key=lambda sprite: (sprite.z,sprite.y_sort)):
             self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
