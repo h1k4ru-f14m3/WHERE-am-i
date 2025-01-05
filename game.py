@@ -36,7 +36,7 @@ else:
     render_map("House-1",camera,settings.active_sprites)
 
 # Initialize Player (1685,1850)
-player = Player(camera,(475,860))
+player = Player(camera,(475,860),settings.active_sprites)
 
 # Is game running?
 running = True
@@ -60,6 +60,8 @@ while running:
 
     screen.fill('black')
     camera.render(player.rect)
+    camera.update_layer(player)
+    print(player.z)
     camera.update()
 
     # Testing purposes(Player Pos)

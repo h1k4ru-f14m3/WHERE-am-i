@@ -1,6 +1,7 @@
 import pygame
 import settings
 import map
+import sys
 from math import sqrt
 
 class Camera(pygame.sprite.Group):
@@ -22,15 +23,23 @@ class Camera(pygame.sprite.Group):
 
     
     def update_layer(self,player):
-        self.proximity_sprites = {}
-        proximity = 150
-        player_pos = player.rect.center
+        closest_distance = sys.maxsize
+        closest_sprite = 0
         for sprite in self.sprites():
-            x = abs(player_pos[0] - sprite.rect.center[0])
-            y = abs(player_pos[1] - sprite.rect.center[1])
-
+            if sprite == player or sprite.z == 0: continue
+            x = abs(player.rect.center[0] - sprite.rect.center[0])
+            y = abs(player.rect.center[1] - sprite.rect.center[1])
             distance = sqrt(x**2 + y**2)
-            if distance <= proximity: self.proximity_sprites.update({sprite: distance})
+            if distance <= closest_distance:
+                closest_distance = distance
+                closest_sprite = sprite
+
+        if closest_sprite == 0: return
+        if closest_sprite.z in [3,6]:
+            player.z = closest_sprite.z - 1
+            return
+        player.z = closest_sprite.z
+
         
 
     def render(self,player):
