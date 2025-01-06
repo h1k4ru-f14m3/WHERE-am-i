@@ -24,18 +24,28 @@ class Camera(pygame.sprite.Group):
     
     def update_layer(self,player):
         closest_distance = sys.maxsize
+        second_closest_distance = sys.maxsize
         closest_sprite = 0
+        second_closest_sprite = 0
         for sprite in self.sprites():
             if sprite == player or sprite.z in [0, 5]: continue
             x = abs(player.rect.center[0] - sprite.rect.center[0])
             y = abs(player.rect.center[1] - sprite.rect.center[1])
             distance = sqrt(x**2 + y**2)
-            if distance <= closest_distance:
+            if distance < closest_distance:
+                second_closest_distance = closest_distance
+                second_closest_sprite = closest_sprite
                 closest_distance = distance
                 closest_sprite = sprite
+            elif distance < second_closest_distance:
+                second_closest_distance = distance
+                second_closest_sprite = sprite
 
-        if closest_sprite == 0: return
-        if closest_sprite.z in [3,6] and player.rect.center[1] < closest_sprite.rect.center[1]:
+        if closest_sprite == 0 or second_closest_sprite == 0: return
+        if second_closest_sprite.z == 3 and closest_sprite.z == 6 and player.rect.center[1] < closest_sprite.rect.center[1]:
+            player.z = second_closest_sprite.z - 1
+            return
+        elif (closest_sprite.z in [3,6] and player.rect.center[1] < closest_sprite.rect.center[1]):
             player.z = closest_sprite.z - 1
             return
         player.z = closest_sprite.z

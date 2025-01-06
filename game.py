@@ -3,6 +3,7 @@ from player import Player
 from camera import Camera
 from buildings import Buildings,buildall,buildings_group
 import settings
+from time import sleep
 from map import render_map
 
 
@@ -33,7 +34,7 @@ if settings.onMainMap:
     buildall(camera)
     settings.active_sprites.add(buildings_group)
 else:
-    render_map("House-1",camera,settings.active_sprites)
+    render_map("House-2",camera,settings.active_sprites)
 
 # Initialize Player (1685,1850)
 player = Player(camera,(475,860),settings.active_sprites)
