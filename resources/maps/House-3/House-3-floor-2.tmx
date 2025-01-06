@@ -27,13 +27,10 @@
  <objectgroup id="19" name="Objects-3">
   <object id="130" gid="2147485609" x="136.5" y="132.25" width="128" height="64"/>
  </objectgroup>
- <objectgroup id="7" name="Door">
-  <object id="1" gid="803" x="320" y="224" width="32" height="32"/>
-  <object id="2" gid="787" x="320" y="192" width="32" height="32"/>
-  <object id="3" gid="803" x="160" y="224" width="32" height="32"/>
-  <object id="4" gid="787" x="160" y="192" width="32" height="32"/>
-  <object id="5" gid="803" x="64" y="160" width="32" height="32"/>
-  <object id="6" gid="787" x="64" y="128" width="32" height="32"/>
+ <objectgroup id="20" name="Doors-1">
+  <object id="131" gid="1971" x="64" y="160" width="32" height="64"/>
+  <object id="132" gid="1971" x="160" y="224" width="32" height="64"/>
+  <object id="133" gid="1971" x="320" y="224" width="32" height="64"/>
  </objectgroup>
  <layer id="3" name="Wall" width="14" height="12">
   <data encoding="csv">
@@ -52,8 +49,8 @@
 </data>
  </layer>
  <group id="12" name="Stairs">
-  <objectgroup id="8" name="Stairs">
-   <object id="7" gid="2147485528" x="300" y="160" width="96" height="96"/>
+  <objectgroup id="21" name="Stairs-Obj">
+   <object id="134" gid="2147485640" x="297" y="160" width="96" height="96"/>
   </objectgroup>
   <layer id="4" name="Stairs-Tiles" width="14" height="12">
    <data encoding="csv">

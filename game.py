@@ -23,17 +23,18 @@ clock = pygame.time.Clock()
 # Initialize Camera
 camera = Camera()
 
+# Initialize Buildings
+# buildall(camera)
+
+# # Active Sprites for collisions
+# settings.active_sprites.add(buildings_group)
+
 # Initialize Map
 if settings.onMainMap:
-
-    # Initialize Buildings
     buildall(camera)
-
-    # Active Sprites for collisions
     settings.active_sprites.add(buildings_group)
 else:
     render_map("House-2",camera,settings.active_sprites)
-
 
 # Initialize Player (1685,1850)
 player = Player(camera,(475,860),settings.active_sprites)
