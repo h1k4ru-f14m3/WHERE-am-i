@@ -1,4 +1,5 @@
 import pygame
+import settings
 from os import listdir
 
 class Player(pygame.sprite.Sprite):
@@ -20,6 +21,8 @@ class Player(pygame.sprite.Sprite):
         self.hitbox = self.rect.inflate(-75,-75)
         self.direction = pygame.math.Vector2()
         self.speed = 3
+        self.z = settings.draw_order["Player"]
+        self.y_sort = self.rect.centery
 
         self.othergroups = othergroups
 
@@ -95,6 +98,7 @@ class Player(pygame.sprite.Sprite):
 
 
     def update(self):
+        self.y_sort = self.rect.centery
         self.input()
         self.hitbox.centerx += self.direction.x * self.speed
         self.collision_check('h')

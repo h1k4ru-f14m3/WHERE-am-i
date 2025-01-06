@@ -1,6 +1,8 @@
 import pygame
 import settings
 import map
+import sys
+from math import sqrt
 
 class Camera(pygame.sprite.Group):
     def __init__(self):
@@ -17,6 +19,36 @@ class Camera(pygame.sprite.Group):
         self.offset = pygame.math.Vector2()
         self.half_w = self.screen.get_size()[0] / 2
         self.half_h = self.screen.get_size()[1] / 2
+
+    
+    def update_layer(self,player):
+        closest_distance = sys.maxsize
+        second_closest_distance = sys.maxsize
+        closest_sprite = 0
+        second_closest_sprite = 0
+        for sprite in self.sprites():
+            if sprite == player or sprite.z in [0, 5]: continue
+            x = abs(player.rect.center[0] - sprite.rect.center[0])
+            y = abs(player.rect.center[1] - sprite.rect.center[1])
+            distance = sqrt(x**2 + y**2)
+            if distance < closest_distance:
+                second_closest_distance = closest_distance
+                second_closest_sprite = closest_sprite
+                closest_distance = distance
+                closest_sprite = sprite
+            elif distance < second_closest_distance:
+                second_closest_distance = distance
+                second_closest_sprite = sprite
+
+        if closest_sprite == 0 or second_closest_sprite == 0: return
+        if second_closest_sprite.z == 3 and closest_sprite.z == 6 and player.rect.center[1] < closest_sprite.rect.center[1]:
+            player.z = second_closest_sprite.z - 1
+            return
+        elif (closest_sprite.z in [3,6] and player.rect.center[1] < closest_sprite.rect.center[1]):
+            player.z = closest_sprite.z - 1
+            return
+        player.z = closest_sprite.z
+
         
 
     def render(self,player):
@@ -35,8 +67,8 @@ class Camera(pygame.sprite.Group):
         if settings.onMainMap:
             self.screen.blit(self.map_surf,self.map_rect.center + self.offset)
 
-        # Load the Ground Layer
-        for sprite in settings.map_tiles:
+        # for sprite in sorted(self.sprites(), key= lambda x: x.hitbox.centery):
+        for sprite in sorted(self.sprites(), key=lambda sprite: (sprite.z,sprite.y_sort)):
             self.screen.blit(sprite.image,sprite.rect.topleft + self.offset)
 
 

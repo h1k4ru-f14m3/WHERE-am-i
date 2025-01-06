@@ -3,6 +3,7 @@ from player import Player
 from camera import Camera
 from buildings import Buildings,buildall,buildings_group
 import settings
+from time import sleep
 from map import render_map
 
 
@@ -31,7 +32,7 @@ if settings.onMainMap:
     # Active Sprites for collisions
     settings.active_sprites.add(buildings_group)
 else:
-    render_map("House-1",camera,settings.active_sprites)
+    render_map("House-2",camera,settings.active_sprites)
 
 
 # Initialize Player (1685,1850)
@@ -59,6 +60,8 @@ while running:
 
     screen.fill('black')
     camera.render(player.rect)
+    camera.update_layer(player)
+    print(player.z)
     camera.update()
 
     # Testing purposes(Player Pos)
