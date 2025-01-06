@@ -36,8 +36,8 @@ if settings.onMainMap:
 else:
     render_map("House-2",camera,settings.active_sprites)
 
-# Initialize Player (1685,1850)
-player = Player(camera,(475,860),settings.active_sprites)
+# Initialize Player (1685,1850) (475,860)
+player = Player(camera,(1685,1850),settings.active_sprites)
 
 # Is game running?
 running = True
@@ -62,7 +62,46 @@ while running:
     screen.fill('black')
     camera.render(player.rect)
     camera.update_layer(player)
-    print(player.z)
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_m]: 
+        camera.unload_map(player)
+        camera.load_main()
+
+        settings.onMainMap = True
+        settings.inBuilding = False
+        settings.building = "None"
+    if keys[pygame.K_1]:
+        camera.unload_map(player)
+        render_map("House-1",camera,settings.active_sprites)
+        player.hitbox.center = (settings.starting)
+
+        settings.onMainMap = False
+        settings.inBuilding = True
+        settings.building = "House-1"
+    if keys[pygame.K_2]:
+        camera.unload_map(player)
+        render_map("House-2",camera,settings.active_sprites)
+        player.hitbox.center = (settings.starting)
+
+        settings.onMainMap = False
+        settings.inBuilding = True
+        settings.building = "House-2"
+    if keys[pygame.K_t]:
+        camera.unload_map(player)
+        render_map("Toms-Diner",camera,settings.active_sprites)
+        player.hitbox.center = (settings.starting)
+
+        settings.onMainMap = False
+        settings.inBuilding = True
+        settings.building = "Toms-Diner"
+    if keys[pygame.K_DELETE]:
+        camera.unload_map(player)
+
+        settings.onMainMap = False
+        settings.inBuilding = False
+
+
     camera.update()
 
     # Testing purposes(Player Pos)

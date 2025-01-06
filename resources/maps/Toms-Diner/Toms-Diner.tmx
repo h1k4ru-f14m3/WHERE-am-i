@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="12" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="21" nextobjectid="305">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="12" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="22" nextobjectid="306">
  <tileset firstgid="1" source="../Tilesets/RoomBuilder-32x.tsx"/>
  <tileset firstgid="392" source="../Tilesets/Interiors-32x.tsx"/>
  <tileset firstgid="1816" source="../Tilesets/Object-Tiles.tsx"/>
@@ -28,7 +28,6 @@
  </layer>
  <objectgroup id="18" name="Doors-1">
   <object id="266" gid="2012" x="320" y="192" width="32" height="64"/>
-  <object id="267" gid="2012" x="32" y="192" width="32" height="64"/>
  </objectgroup>
  <layer id="3" name="Wall" width="12" height="13">
   <data encoding="csv">
@@ -135,7 +134,7 @@
 </data>
   </layer>
  </group>
- <group id="16" name="Hitboxes" visible="0">
+ <group id="16" name="Hitboxes">
   <objectgroup id="15" name="Outdoor-Hitbox" visible="0">
    <object id="230" x="161.5" y="376.167" width="60" height="17.8333"/>
   </objectgroup>
@@ -160,8 +159,8 @@
    <object id="204" x="1" y="0.5" width="382" height="63"/>
    <object id="205" x="365.5" y="-2.5" width="18.5" height="397.5"/>
    <object id="206" x="351.818" y="153.667" width="32" height="38.3333"/>
-   <object id="207" x="64.6667" y="154" width="255.333" height="36.6667"/>
-   <object id="208" x="0.25" y="154.833" width="32" height="36.1667"/>
+   <object id="207" x="64.6667" y="144.5" width="255.333" height="46.1667"/>
+   <object id="208" x="0.25" y="145.333" width="32" height="45.6667"/>
    <object id="209" x="-1.33333" y="-0.666667" width="18.3333" height="395.333"/>
    <object id="210" x="160" y="1" width="12.5" height="154"/>
    <object id="211" x="210" y="0" width="13" height="96"/>
@@ -173,4 +172,9 @@
    <object id="235" x="172" y="49" width="147.5" height="46.5"/>
   </objectgroup>
  </group>
+ <objectgroup id="21" name="Marker" visible="0">
+  <object id="305" x="190.5" y="339">
+   <point/>
+  </object>
+ </objectgroup>
 </map>

@@ -49,6 +49,7 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = 0
 
 
+
     def animation(self):
         if self.direction.x == 0 and self.direction.y == 0:
             self.image = self.frames[self.facing][0]

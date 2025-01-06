@@ -2,7 +2,7 @@ import pygame
 
 
 class Buildings(pygame.sprite.Sprite):
-    def __init__(self, group, type, pos, hitbox_size):
+    def __init__(self, group, type, pos, hitbox_size, z=1):
         super().__init__(group)
         
         self.image = pygame.transform.scale2x(pygame.image.load(f'resources/buildings/{type}.png').convert_alpha())
@@ -11,6 +11,8 @@ class Buildings(pygame.sprite.Sprite):
         self.hitbox.midbottom = pos
         self.door = self.hitbox.midbottom
         self.type = type
+        self.z = z
+        self.y_sort = self.hitbox.centery + 100
         if type == 'mart': self.door = ((self.hitbox.midbottom[0] + 100), (self.hitbox.midbottom[1]))
         
         
