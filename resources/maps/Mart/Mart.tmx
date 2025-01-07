@@ -165,14 +165,14 @@
    <object id="378" x="384" y="105" width="20.25" height="23.25"/>
   </objectgroup>
   <objectgroup id="13" name="Door-Hitbox" visible="0">
-   <object id="379" x="256.364" y="462.182" width="63.4545" height="18.1818"/>
+   <object id="379" name="door" x="256.364" y="444.432" width="63.4545" height="35.9318"/>
   </objectgroup>
   <objectgroup id="14" name="Get-Inside-Hitbox" visible="0">
    <object id="385" x="287.625" y="179" width="34.125" height="44.25"/>
   </objectgroup>
  </group>
- <objectgroup id="20" name="Marker">
-  <object id="447" x="286.5" y="413.5">
+ <objectgroup id="20" name="Marker" visible="0">
+  <object id="447" name="start" x="286.5" y="413.5">
    <point/>
   </object>
  </objectgroup>

@@ -136,7 +136,7 @@
  </group>
  <group id="16" name="Hitboxes">
   <objectgroup id="15" name="Outdoor-Hitbox" visible="0">
-   <object id="230" x="161.5" y="376.167" width="60" height="17.8333"/>
+   <object id="230" name="door" x="161.5" y="376.167" width="60" height="17.8333"/>
   </objectgroup>
   <objectgroup id="17" name="Get-Inside" visible="0">
    <object id="239" x="155" y="269.727" width="36.5455" height="18.0909"/>
@@ -173,7 +173,7 @@
   </objectgroup>
  </group>
  <objectgroup id="21" name="Marker" visible="0">
-  <object id="305" x="190.5" y="339">
+  <object id="305" name="start" x="190.5" y="339">
    <point/>
   </object>
  </objectgroup>

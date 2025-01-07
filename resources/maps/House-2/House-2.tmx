@@ -152,11 +152,11 @@
    <object id="205" x="43" y="372.5" width="60.5" height="11.25"/>
   </objectgroup>
   <objectgroup id="24" name="Outdoor-Hitbox" visible="0">
-   <object id="206" x="198.667" y="348.167" width="50.25" height="35.3333"/>
+   <object id="206" name="door" x="198.667" y="348.167" width="50.25" height="35.3333"/>
   </objectgroup>
  </group>
  <objectgroup id="30" name="Marker" visible="0">
-  <object id="240" x="222.75" y="314.25">
+  <object id="240" name="start" x="222.75" y="314.25">
    <point/>
   </object>
  </objectgroup>
