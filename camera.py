@@ -66,6 +66,8 @@ class Camera(pygame.sprite.Group):
             sprite.kill()
         for hitbox in settings.active_sprites:
             hitbox.kill()
+        for door in settings.doors:
+            door.kill()
 
         
 
@@ -75,13 +77,13 @@ class Camera(pygame.sprite.Group):
 
         # Minus 400 of Original Map's X Size
         if settings.onMainMap:
-            if player.centerx < 3696 and player.centerx > 400:
-                self.offset.x = -(player.center[0] - self.screen.get_size()[0] / 2)
-            if player.centery < 3796 and player.centery > 300:
-                self.offset.y = -(player.center[1] - self.screen.get_size()[1] / 2)
+            # if player.centerx < 3696 and player.centerx > 400:
+            #     self.offset.x = -(player.center[0] - self.screen.get_size()[0] / 2)
+            # if player.centery < 3796 and player.centery > 300:
+            #     self.offset.y = -(player.center[1] - self.screen.get_size()[1] / 2)
 
             self.screen.blit(self.map_surf,self.map_rect.center + self.offset)
-
+        
         self.offset.x = -(player.center[0] - self.screen.get_size()[0] / 2)
         self.offset.y = -(player.center[1] - self.screen.get_size()[1] / 2)
 

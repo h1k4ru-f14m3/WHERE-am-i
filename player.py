@@ -1,5 +1,7 @@
 import pygame
 import settings
+from map import getin_building
+from time import sleep
 from os import listdir
 
 class Player(pygame.sprite.Sprite):
@@ -24,6 +26,7 @@ class Player(pygame.sprite.Sprite):
         self.z = settings.draw_order["Player"]
         self.y_sort = self.rect.centery
 
+        self.group = group
         self.othergroups = othergroups
 
 
@@ -49,7 +52,6 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = 0
 
 
-
     def animation(self):
         if self.direction.x == 0 and self.direction.y == 0:
             self.image = self.frames[self.facing][0]
@@ -73,6 +75,24 @@ class Player(pygame.sprite.Sprite):
             return
 
         for sprite in self.othergroups:
+            if sprite.name == 'door' and sprite.hitbox.colliderect(self.hitbox):
+                print("1")
+                self.group.unload_map(self)
+                self.group.load_main()
+                self.hitbox.centerx = settings.ending[0]
+                self.hitbox.centery = settings.ending[1] + 25
+
+                settings.onMainMap = True
+                settings.inBuilding = False
+                settings.building = "None"
+                return
+            
+            elif settings.onMainMap and self.hitbox.collidepoint(sprite.door):
+                print("2")
+                print(sprite.type)
+                settings.ending = self.hitbox.center
+                getin_building((self.group), self, sprite.type)
+
             if direction == 'h' and sprite.hitbox.colliderect(self.hitbox):
                 if self.direction.x > 0:
                     self.hitbox.right = sprite.hitbox.left
@@ -85,8 +105,8 @@ class Player(pygame.sprite.Sprite):
                 else:
                     self.hitbox.top = sprite.hitbox.bottom
 
-            # if self.hitbox.collidepoint(sprite.door):
-            #     print(sprite.type)
+            
+                # print(settings.ending)
 
         self.border_collision()
 
@@ -96,6 +116,13 @@ class Player(pygame.sprite.Sprite):
         if self.hitbox.collidepoint(4096,self.hitbox.centery): self.hitbox.right = 4096
         if self.hitbox.collidepoint(self.hitbox.centerx,0): self.hitbox.top = 0
         if self.hitbox.collidepoint(self.hitbox.centerx,4096): self.hitbox.bottom = 4096  
+
+
+    def collision_functions(self):
+        for sprite in self.othergroups:
+            if sprite.name != "door": continue
+            if self.hitbox.colliderect(sprite.hitbox):
+                print("OK!")
 
 
     def update(self):

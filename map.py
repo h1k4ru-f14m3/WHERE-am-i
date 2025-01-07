@@ -21,7 +21,10 @@ def render_map(type,group,collision_group):
             continue
         
         for obj in layer:
-            GameSprite(((obj.x * 2.5), (obj.y * 2.5)), pygame.surface.Surface((obj.width,obj.height)), (collision_group), width=obj.width,height=obj.height)
+            name = "None"
+            if obj.name == "door": 
+                name = obj.name
+            GameSprite(((obj.x * 2.5), (obj.y * 2.5)), pygame.surface.Surface((obj.width,obj.height)), (collision_group), width=obj.width,height=obj.height,name=name)
 
     for marker in mapdata.get_layer_by_name("Marker"):
         settings.starting = (marker.x * 2.5, marker.y * 2.5)
@@ -29,6 +32,15 @@ def render_map(type,group,collision_group):
     # for obj in mapdata.get_layer_by_name("Door"):
     #     GameSprite(((obj.x * 2.5), (obj.y * 2.5)), obj.image, (group))
         
+
+def getin_building(group,player,type):
+    group.unload_map(player)
+    render_map(type,group,settings.active_sprites)
+    player.hitbox.center = (settings.starting)
+
+    settings.onMainMap = False
+    settings.inBuilding = True
+    settings.building = type
     
 
 
