@@ -82,16 +82,32 @@ class Player(pygame.sprite.Sprite):
                 self.hitbox.centerx = settings.ending[0]
                 self.hitbox.centery = settings.ending[1] + 25
 
+                settings.current_floor = 0
+                settings.stair_end = (0,0)
                 settings.onMainMap = True
                 settings.inBuilding = False
                 settings.building = "None"
                 return
             
+            elif sprite.name == 'stair' and sprite.hitbox.colliderect(self.hitbox):
+                self.group.unload_map(self)
+                if settings.current_floor == 1:
+                    getin_building((self.group), self, settings.building,floor_num = settings.current_floor + 1)
+                    settings.current_floor += 1
+                else:
+                    getin_building((self.group), self, settings.building,floor_num = settings.current_floor - 1)
+                    settings.current_floor -= 1
+                
+                print("1")
+            
             elif settings.onMainMap and self.hitbox.collidepoint(sprite.door):
                 print("2")
                 print(sprite.type)
                 settings.ending = self.hitbox.center
-                getin_building((self.group), self, sprite.type)
+
+                if sprite.type == "House-3": settings.current_floor = 1
+                getin_building((self.group), self, sprite.type,floor_num=settings.current_floor)
+
 
             if direction == 'h' and sprite.hitbox.colliderect(self.hitbox):
                 if self.direction.x > 0:

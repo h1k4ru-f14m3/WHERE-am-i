@@ -2,11 +2,19 @@ import pygame
 import pytmx.util_pygame
 import settings
 from sprites import GameSprite
+from os import path
 
 
-def render_map(type,group,collision_group):
+def render_map(type,group,collision_group,floornum=0):
     file_path = "resources/maps"
-    mapdata = pytmx.load_pygame(f"{file_path}/{type}/{type}.tmx", pixelalpha=True)
+    floor = str()
+    if floornum != 0:
+        floor = "-floor-" + f"{floornum}"
+    file = path.join(file_path, type, f"{type}{floor}.tmx")
+    if not path.exists(file): 
+        return
+
+    mapdata = pytmx.load_pygame(file, pixelalpha=True)
 
     for layer in mapdata.visible_tile_layers:
         for x,y,img in mapdata.layers[layer].tiles():
@@ -22,21 +30,28 @@ def render_map(type,group,collision_group):
         
         for obj in layer:
             name = "None"
-            if obj.name == "door": 
+            if obj.name == "door" or obj.name == "stair": 
                 name = obj.name
             GameSprite(((obj.x * 2.5), (obj.y * 2.5)), pygame.surface.Surface((obj.width,obj.height)), (collision_group), width=obj.width,height=obj.height,name=name)
 
     for marker in mapdata.get_layer_by_name("Marker"):
-        settings.starting = (marker.x * 2.5, marker.y * 2.5)
+        if marker.name == "start":
+            settings.starting = (marker.x * 2.5, marker.y * 2.5)
+        elif marker.name == "stair_end":
+            settings.stair_end = (marker.x * 2.5, marker.y * 2.5)
 
     # for obj in mapdata.get_layer_by_name("Door"):
     #     GameSprite(((obj.x * 2.5), (obj.y * 2.5)), obj.image, (group))
         
 
-def getin_building(group,player,type):
+def getin_building(group,player,type,floor_num=0):
     group.unload_map(player)
-    render_map(type,group,settings.active_sprites)
-    player.hitbox.center = (settings.starting)
+    render_map(type,group,settings.active_sprites,floornum=floor_num)
+
+    if floor_num == 1 and settings.current_floor == 2:
+        player.hitbox.center = (settings.stair_end)
+    else:
+        player.hitbox.center = (settings.starting)
 
     settings.onMainMap = False
     settings.inBuilding = True
