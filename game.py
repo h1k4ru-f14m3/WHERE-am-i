@@ -23,18 +23,9 @@ clock = pygame.time.Clock()
 # Initialize Camera
 camera = Camera()
 
-# Initialize Buildings
-# buildall(camera)
-
-# # Active Sprites for collisions
-# settings.active_sprites.add(buildings_group)
-
-# Initialize Map
-if settings.onMainMap:
-    buildall(camera)
-    settings.active_sprites.add(buildings_group)
-else:
-    render_map("House-2",camera,settings.active_sprites)
+# Initialize Main-Map
+buildall(camera)
+settings.active_sprites.add(buildings_group)
 
 # Initialize Player (1685,1850) (475,860)
 player = Player(camera,(1685,1850),settings.active_sprites)
@@ -51,7 +42,6 @@ text_rect = text_surf.get_rect(center=(400,50))
 text2_rect = text2_surf.get_rect(center=(400,75))
 
 
-
 # Game Loop
 while running:
     for event in pygame.event.get():
@@ -59,10 +49,14 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    # Fill the screen with black so the sprites won't look weird if there's nothing to render
     screen.fill('black')
+
+    # Render and update the player's z value dynamically for drawing order
     camera.render(player.rect)
     camera.update_layer(player)
 
+    # Temporary Key binds
     keys = pygame.key.get_pressed()
     if keys[pygame.K_m]: 
         camera.unload_map(player)
@@ -101,9 +95,6 @@ while running:
         settings.onMainMap = False
         settings.inBuilding = False
 
-
-    camera.update()
-
     # Testing purposes(Player Pos)
     player_pos = player.rect.center
     text_surf = font.render(f'Pos: ({player_pos[0]}, {player_pos[1]})', True, (255,255,255))
@@ -112,6 +103,7 @@ while running:
     screen.blit(text2_surf,text2_rect)
 
     # Keep updating the screen
+    camera.update()
     pygame.display.update()
     pygame.display.flip()
     clock.tick(60)

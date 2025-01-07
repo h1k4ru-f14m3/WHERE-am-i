@@ -3,14 +3,20 @@ import pygame
 
 class Buildings(pygame.sprite.Sprite):
     def __init__(self, group, type, pos, hitbox_size, z=1, name="None"):
+        # Get functions from parent class
         super().__init__(group)
         
+        # Name and import image (Name is here so it wouldn't generate errors, mainly)
         self.name = name
         self.image = pygame.transform.scale2x(pygame.image.load(f'resources/buildings/{type}.png').convert_alpha())
+
+        # Setting the hitbox and the door to enter
         self.rect = self.image.get_rect(midbottom=(pos))
         self.hitbox = self.rect.inflate((hitbox_size))
         self.hitbox.midbottom = pos
         self.door = self.hitbox.midbottom
+
+        # Type to differenciate buildings
         self.type = type
         self.z = z
         self.y_sort = self.hitbox.centery + 100
@@ -18,9 +24,10 @@ class Buildings(pygame.sprite.Sprite):
         
         
 
-# List of x pos
-# List of y pos
-# List of counts for each y pos(e.g. 3 building for the first y pos)
+# Values to input:
+#   List of x pos (X pos to place the buildings)
+#   List of y pos (Y pos to place the buildings/Row count and its positions)
+#   List of counts for each y pos(e.g. 3 building for the first y pos)
 buildings_group = pygame.sprite.Group()
 def build(x_pos,y_pos,counts,group,name,hitbox):
     index = 0
@@ -33,6 +40,7 @@ def build(x_pos,y_pos,counts,group,name,hitbox):
             index += 1
 
 
+# Build all buildings and put them into group
 def buildall(group):
     y_pos_list = [572,1754,2694,3870]
 

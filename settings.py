@@ -24,9 +24,11 @@ draw_order = {
 
 onMainMenu = False
 onMainMap = True
+
 inBuilding = False
 building = "None"
 current_floor = 0
+
 stair_end = (0,0)
 starting = (0,0)
 ending = (0,0)
