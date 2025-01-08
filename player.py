@@ -87,10 +87,6 @@ class Player(pygame.sprite.Sprite):
 
 
     def collision_check(self,direction):
-        # Check if the collision groups has sprites, if not then skip the whole process for performance
-        if self.othergroups == 0:
-            return
-
         # Doing the function of some collisions if the player collides with them
         self.collision_functions()
 
@@ -168,9 +164,11 @@ class Player(pygame.sprite.Sprite):
         # Updating everything
         self.y_sort = self.rect.centery
         self.input()
+
         self.hitbox.centerx += self.direction.x * self.speed
         self.collision_check('h')
         self.hitbox.centery += self.direction.y * self.speed
         self.collision_check('v')
+        
         self.rect.center = self.hitbox.center
         self.animation()

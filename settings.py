@@ -22,7 +22,13 @@ draw_order = {
 
 # Game States and Booleans
 
+running = True
+
 onMainMenu = False
+onSettings = False
+onPause = False
+isPlaying = True
+
 onMainMap = True
 
 inBuilding = False

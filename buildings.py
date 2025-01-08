@@ -1,4 +1,5 @@
 import pygame
+import string
 
 
 class Buildings(pygame.sprite.Sprite):
@@ -8,7 +9,7 @@ class Buildings(pygame.sprite.Sprite):
         
         # Name and import image (Name is here so it wouldn't generate errors, mainly)
         self.name = name
-        self.image = pygame.transform.scale2x(pygame.image.load(f'resources/buildings/{type}.png').convert_alpha())
+        self.image = pygame.transform.scale2x(pygame.image.load(f'resources/buildings/{type.lower()}.png').convert_alpha())
 
         # Setting the hitbox and the door to enter
         self.rect = self.image.get_rect(midbottom=(pos))
