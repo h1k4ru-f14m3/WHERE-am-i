@@ -2,11 +2,12 @@ import pygame
 import settings
 import os
 
-class menu(pygame.sprite.Group):
+class Menu(pygame.sprite.Group):
     def __init__(self):
+        self.screen = pygame.display.get_surface()
         super().__init__()
 
-    def main_menu(self,screen):
+    def main_menu(self):
         button('long-button-large', (300,510), self, 'Play')
         button('settings-button', (400,510), self)
 
@@ -15,7 +16,7 @@ class menu(pygame.sprite.Group):
                 if event.type == pygame.QUIT:
                     settings.running = False
 
-            screen.fill('#384259')
+            self.screen.fill('#384259')
             for sprite in self.sprites():
                 sprite.update()
 
