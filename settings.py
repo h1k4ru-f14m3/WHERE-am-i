@@ -24,10 +24,10 @@ draw_order = {
 
 running = True
 
-onMainMenu = False
+onMainMenu = True
 onSettings = False
 onPause = False
-isPlaying = True
+isPlaying = False
 
 onMainMap = True
 

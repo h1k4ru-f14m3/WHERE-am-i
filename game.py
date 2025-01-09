@@ -3,6 +3,7 @@ import settings
 from player import Player
 from camera import Camera
 from buildings import buildall,buildings_group
+from time import sleep
 
 
 class Game():
@@ -22,13 +23,21 @@ class Game():
 
 
     def run(self):
-        while settings.running:
+        while settings.running and settings.isPlaying:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    settings.isPlaying = False
                     settings.running = False
 
             self.screen.fill('black')
             self.camera.render(self.player.rect)
+
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_ESCAPE]:
+                self.screen.fill('black')
+                sleep(0.25)
+                settings.isPlaying = False
+                settings.onPause = True
 
             if settings.isPlaying:
                 self.camera.update_layer(self.player)
@@ -37,5 +46,3 @@ class Game():
             pygame.display.update()
             pygame.display.flip()
             self.clock.tick(60)
-
-        pygame.quit()
