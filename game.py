@@ -8,6 +8,7 @@ from time import sleep
 
 class Game():
     def __init__(self,clock):
+        # For the window
         self.screen = pygame.display.get_surface()
         self.clock = clock
 
@@ -23,28 +24,30 @@ class Game():
 
 
     def run(self):
-        self.player.hitbox.center = (1685,1850)
-
+        # Game Loop
         while settings.running and settings.isPlaying:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     settings.isPlaying = False
                     settings.running = False
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    self.screen.fill('black')
+                    sleep(0.25)
+                    settings.isPlaying = False
+                    settings.onPause = True
 
+            # Background Color
             self.screen.fill('black')
+
+            # Render Everything
             self.camera.render(self.player.rect)
 
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_ESCAPE]:
-                self.screen.fill('black')
-                sleep(0.25)
-                settings.isPlaying = False
-                settings.onPause = True
-
+            # Keep updating the sprites if the player is still playing
             if settings.isPlaying:
                 self.camera.update_layer(self.player)
                 self.camera.update()
 
+            # Update Display/Window
             pygame.display.update()
             pygame.display.flip()
             self.clock.tick(60)
