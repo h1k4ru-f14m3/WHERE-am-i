@@ -84,7 +84,7 @@ class Menu(pygame.sprite.Group):
         # Initialize the labels and buttons
         for key in labels.keys():
             button(labels[key][0], 'long-button-small', labels[key][2], self, labels[key][1], listen=False)
-            button(labels[key][0], 'square-button-small', labels[key][3], self, listen=True)
+            button(labels[key][0], 'square-button-small', labels[key][3], self, pygame.key.name(settings.config[key]), listen=True)
 
         # Game/Window Loop
         while settings.running and settings.onSettings:
@@ -206,13 +206,16 @@ class button(pygame.sprite.Sprite):
         self.index = 's'
         self.image = pygame.image.load(self.frames[self.index])
         self.rect = self.image.get_rect(center=(pos))
+        self.set_text(text)
 
+
+    def set_text(self,text):
         # Text
         if text != "None":
             self.text_surf = self.font.render(text,False,'#ffffff')
             self.shadow = self.font.render(text,False,'#7AC7C4')
-            self.text_rect = self.text_surf.get_rect(center=(pos))
-            self.shadow_rect = self.shadow.get_rect(center=(pos[0]+3,pos[1]+3))
+            self.text_rect = self.text_surf.get_rect(center=(self.rect.center))
+            self.shadow_rect = self.shadow.get_rect(center=(self.rect.centerx+3,self.rect.centery+3))
 
     
     # Listen for user input/mouse movement
@@ -245,6 +248,7 @@ class button(pygame.sprite.Sprite):
             settings.onPause = False
         elif 'move' in self.name and mouse_hover and mouse_press:
             keybind_change(self.name)
+            self.set_text(pygame.key.name(settings.config[self.name.replace('move-', '')]))
 
     # Update Button
     def update(self):
