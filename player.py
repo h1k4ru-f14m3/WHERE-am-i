@@ -80,7 +80,7 @@ class Player(pygame.sprite.Sprite):
     def get_frames(self,path):
         # A function to import the player frames. (Made this function for code organization sake)
         newlist = []
-        for file in listdir(path):
+        for file in sorted(listdir(path), key=lambda x: x.lower()):
             newlist.append(pygame.transform.scale(pygame.image.load(f'{path}/{file}').convert_alpha(), (100,100)))
         return newlist
 
