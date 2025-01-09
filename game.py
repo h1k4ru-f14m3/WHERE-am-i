@@ -23,6 +23,8 @@ class Game():
 
 
     def run(self):
+        self.player.hitbox.center = (1685,1850)
+
         while settings.running and settings.isPlaying:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
