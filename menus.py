@@ -74,16 +74,17 @@ class Menu(pygame.sprite.Group):
 
         # Labels of settings which will not change their color upon mouse hover
         labels = {
-            'forward': ['move-forward', 'Move Forward', (355,163)],
-            'left': ['move-left', 'Move Left', (355, 243)],
-            'backward': ['move-backward', 'Move Backward', (355, 323)],
-            'right': ['move-right', 'Move Right', (355, 403)],
-            'sound': ['sound', 'Sound', (355, 483)]
+            'forward': ['move-forward', 'Move Forward', (355,163), (638,163)],
+            'left': ['move-left', 'Move Left', (355, 243), (638,243)],
+            'backward': ['move-backward', 'Move Backward', (355, 323), (638,323)],
+            'right': ['move-right', 'Move Right', (355, 403), (638,403)],
+            'sound': ['sound', 'Sound', (355, 483), (638,483)]
         }
 
-        # Initialize the labels
+        # Initialize the labels and buttons
         for key in labels.keys():
             button(labels[key][0], 'long-button-small', labels[key][2], self, labels[key][1], listen=False)
+            button(labels[key][0], 'square-button-small', labels[key][3], self, listen=True)
 
         # Game/Window Loop
         while settings.running and settings.onSettings:
@@ -242,7 +243,8 @@ class button(pygame.sprite.Sprite):
             transition(self.screen,self.group)
             settings.onMainMenu = True
             settings.onPause = False
-
+        elif 'move' in self.name and mouse_hover and mouse_press:
+            keybind_change(self.name)
 
     # Update Button
     def update(self):
@@ -267,3 +269,14 @@ def transition(screen,group):
     sleep(0.25)
     for sprite in group.sprites():
         sprite.kill()
+
+
+def keybind_change(name):
+    checking = True
+    while checking:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                settings.config[name.replace('move-', '')] = event.key
+                settings.save_config("config/config.json")
+                checking = False
+                return

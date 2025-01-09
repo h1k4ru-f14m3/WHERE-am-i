@@ -43,19 +43,19 @@ class Player(pygame.sprite.Sprite):
         # Player movement and setting which type of player sprite frame to display
         keys = pygame.key.get_pressed()
 
-        if keys[pygame.K_w]:
+        if keys[settings.config['forward']]:
             self.direction.y = -1
             self.facing = 'back'
-        elif keys[pygame.K_s]:
+        elif keys[settings.config['backward']]:
             self.direction.y = 1
             self.facing = 'front'
         else:
             self.direction.y = 0
 
-        if keys[pygame.K_a]:
+        if keys[settings.config['left']]:
             self.direction.x = -1
             self.facing = 'left'
-        elif keys[pygame.K_d]:
+        elif keys[settings.config['right']]:
             self.direction.x = 1
             self.facing = 'right'
         else:

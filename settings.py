@@ -1,4 +1,5 @@
 import pygame
+import json
 
 # Sprites Group for Collisions
 active_sprites = pygame.sprite.Group()
@@ -16,7 +17,8 @@ draw_order = {
     "Wall-Outline-2": 6,
     "Wall-Outline-3": 6,
     "Doors-1": 4,
-    "Doors-2": 7
+    "Doors-2": 7,
+    "Top": 8
 }
 
 
@@ -38,3 +40,16 @@ current_floor = 0
 stair_end = (0,0)
 starting = (0,0)
 ending = (0,0)
+
+# Configs
+
+config = {}
+
+def load_config(file_path):
+    with open(file_path, "r") as data:
+        config.update(json.load(data))
+
+def save_config(file_path):
+    data = json.dumps(config)
+    with open(file_path, "w") as file:
+        file.write(data)

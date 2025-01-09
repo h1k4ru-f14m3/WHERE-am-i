@@ -30,7 +30,7 @@ class Game():
                 if event.type == pygame.QUIT:
                     settings.isPlaying = False
                     settings.running = False
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     self.screen.fill('black')
                     sleep(0.25)
                     settings.isPlaying = False
