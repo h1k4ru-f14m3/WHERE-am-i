@@ -2,6 +2,7 @@ import pygame
 import settings
 from game import Game
 from menus import Menu
+from music import play_music
 import json
 
 pygame.init()
@@ -13,6 +14,7 @@ game = Game(clock)
 settings.load_config("config/config.json")
 
 while settings.running:
+    play_music()
     if settings.onMainMenu:
         main.main_menu()
     elif settings.onSettings:
@@ -22,5 +24,5 @@ while settings.running:
     elif settings.isPlaying:
         game.run()
 
-settings.save_config("config/config.json", settings.config)
+settings.save_config("config/config.json")
 pygame.quit()
