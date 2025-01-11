@@ -46,7 +46,7 @@ def buildall(group):
     y_pos_list = [572,1754,2694,3870]
 
     # Police Department
-    Buildings((group, buildings_group),'Police-Department',(1690,y_pos_list[1]),(-150,-275))
+    Buildings((group, buildings_group),'Police',(1690,y_pos_list[1]),(-150,-275))
 
     # Tom's Diner
     Buildings((group, buildings_group),'Toms-Diner',(1668,y_pos_list[0]),(-75,-425))

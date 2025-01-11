@@ -155,7 +155,7 @@ class Player(pygame.sprite.Sprite):
                 print(sprite.type)
                 settings.ending = self.hitbox.center
 
-                if sprite.type == "House-3": settings.current_floor = 1
+                if sprite.type == "House-3" or sprite.type == "Police": settings.current_floor = 1
                 getin_building((self.group), self, sprite.type,floor_num=settings.current_floor)
 
 
