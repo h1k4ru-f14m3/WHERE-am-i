@@ -26,8 +26,11 @@ def render_map(type,group,collision_group,floornum=0):
 
     # Load the tile layers
     for layer in mapdata.visible_tile_layers:
+        z = settings.draw_order[f"{mapdata.layers[layer].name}"]
+        if 'z' in mapdata.layers[layer].properties:
+            z = float(mapdata.layers[layer].z)
         for x,y,img in mapdata.layers[layer].tiles():
-            GameSprite((x * 32 * 2.5, y * 32 * 2.5), img, (group), z=settings.draw_order[f"{mapdata.layers[layer].name}"])
+            GameSprite((x * 32 * 2.5, y * 32 * 2.5), img, (group), z=z)
 
 
     # Load the objects
@@ -36,6 +39,9 @@ def render_map(type,group,collision_group,floornum=0):
             ysortoffset = 0
             if 'y_sort_offset' in obj.properties:
                 ysortoffset = int(obj.y_sort_offset)
+            elif 'z' in obj.properties:
+                GameSprite(((obj.x * 2.5), (obj.y * 2.5)), obj.image, (group), width=obj.width, height=obj.height, z=float(obj.z), ysort_offset=ysortoffset)
+                continue
             GameSprite(((obj.x * 2.5), (obj.y * 2.5)), obj.image, (group), width=obj.width, height=obj.height, z=settings.draw_order[f"{mapdata.layers[layer].name}"], ysort_offset=ysortoffset)
 
 

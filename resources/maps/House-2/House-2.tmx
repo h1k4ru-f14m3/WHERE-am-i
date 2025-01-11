@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="14" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="31" nextobjectid="241">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="14" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="32" nextobjectid="243">
  <tileset firstgid="1" source="../Tilesets/RoomBuilder-32x.tsx"/>
  <tileset firstgid="392" source="../Tilesets/Small-Object-Tiles.tsx"/>
  <tileset firstgid="456" source="../Tilesets/32x32/32x32.tsx"/>
@@ -27,7 +27,6 @@
 </data>
  </layer>
  <objectgroup id="26" name="Objects-3">
-  <object id="207" gid="462" x="41.6667" y="400.667" width="64" height="64"/>
   <object id="208" gid="478" x="119.333" y="216.667" width="64" height="96"/>
   <object id="209" gid="492" x="84.6667" y="193" width="32" height="64"/>
   <object id="210" gid="511" x="14" y="193.333" width="64" height="64"/>
@@ -74,9 +73,11 @@
   <objectgroup id="28" name="Objects-2">
    <object id="230" gid="511" x="14" y="129" width="64" height="64"/>
    <object id="232" gid="393" x="373.273" y="64" width="32" height="32"/>
-   <object id="233" gid="417" x="31.2727" y="155.273" width="32" height="32"/>
-   <object id="235" gid="402" x="56.5455" y="153.091" width="16" height="16"/>
    <object id="236" gid="520" x="289.614" y="342.455" width="127.045" height="63.5227"/>
+  </objectgroup>
+  <objectgroup id="31" name="Mini-Objects">
+   <object id="241" gid="417" x="25.3636" y="156.424" width="32" height="32"/>
+   <object id="242" gid="402" x="50.6364" y="154.242" width="16" height="16"/>
   </objectgroup>
  </group>
  <group id="20" name="Wall-Outlines">

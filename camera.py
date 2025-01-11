@@ -46,7 +46,7 @@ class Camera(pygame.sprite.Group):
         # Iterate through each sprite
         for sprite in self.sprites():
             # Exclude some sprites from the following process (Filtered by their z values)
-            if sprite == player or sprite.z in [0, 7]: continue
+            if sprite == player or sprite.z in [0, 3.5, 3.8, 5.5, 7] or sprite.z < 0: continue
 
             # Subtract the x and y values of player from the sprite's
             x = abs(player.rect.center[0] - sprite.rect.center[0])

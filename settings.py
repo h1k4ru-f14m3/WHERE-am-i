@@ -5,14 +5,16 @@ import json
 active_sprites = pygame.sprite.Group()
 doors = pygame.sprite.Group()
 draw_order = {
+    "Stairs-Tiles-2": -3,
+    "Stairs-Obj": -2,
+    "Stairs-Tiles": -1,
     "Ground": 0,
     "Objects-3": 1,
     "Player": 2,
     "Wall": 3,
-    "Stairs-Tiles": 3.5,
-    "Stairs-Obj": 3.5,
     "Objects-1": 4,
     "Objects-2": 5,
+    "Mini-Objects": 5.5,
     "Wall-Outline-1": 6,
     "Wall-Outline-2": 6,
     "Wall-Outline-3": 6,
