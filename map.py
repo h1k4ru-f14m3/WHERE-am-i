@@ -33,7 +33,10 @@ def render_map(type,group,collision_group,floornum=0):
     # Load the objects
     for layer in mapdata.visible_object_groups:
         for obj in mapdata.layers[layer]:
-            GameSprite(((obj.x * 2.5), (obj.y * 2.5)), obj.image, (group), width=obj.width, height=obj.height, z=settings.draw_order[f"{mapdata.layers[layer].name}"])
+            ysortoffset = 0
+            if 'y_sort_offset' in obj.properties:
+                ysortoffset = int(obj.y_sort_offset)
+            GameSprite(((obj.x * 2.5), (obj.y * 2.5)), obj.image, (group), width=obj.width, height=obj.height, z=settings.draw_order[f"{mapdata.layers[layer].name}"], ysort_offset=ysortoffset)
 
 
     # Load the Hitboxes and giving them names if they have one

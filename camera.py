@@ -37,13 +37,16 @@ class Camera(pygame.sprite.Group):
         # Prepare the integers/values for the function
         closest_distance = sys.maxsize
         second_closest_distance = sys.maxsize
+        third_closest_distance = sys.maxsize
+
         closest_sprite = 0
         second_closest_sprite = 0
+        third_closest_sprite = 0
 
         # Iterate through each sprite
         for sprite in self.sprites():
             # Exclude some sprites from the following process (Filtered by their z values)
-            if sprite == player or sprite.z in [0, 5, 7]: continue
+            if sprite == player or sprite.z in [0, 7]: continue
 
             # Subtract the x and y values of player from the sprite's
             x = abs(player.rect.center[0] - sprite.rect.center[0])
@@ -54,22 +57,77 @@ class Camera(pygame.sprite.Group):
 
             # Get the closest sprite and the second closest sprite
             if distance < closest_distance:
+                third_closest_distance = second_closest_distance
                 second_closest_distance = closest_distance
-                second_closest_sprite = closest_sprite
                 closest_distance = distance
+                third_closest_sprite = second_closest_sprite
+                second_closest_sprite = closest_sprite
                 closest_sprite = sprite
+
             elif distance < second_closest_distance:
+                third_closest_distance = second_closest_distance
                 second_closest_distance = distance
+                third_closest_sprite = second_closest_sprite
                 second_closest_sprite = sprite
 
+            elif distance < third_closest_distance:
+                third_closest_distance = distance
+                third_closest_sprite = sprite
+
         # Give less priority to some sprites with some conditions and set the player z accordingly
-        if closest_sprite == 0 or second_closest_sprite == 0: return
-        if second_closest_sprite.z == 3 and closest_sprite.z == 6 and player.rect.center[1] < closest_sprite.rect.center[1]:
-            player.z = second_closest_sprite.z - 1
+        if closest_sprite == 0 or second_closest_sprite == 0 or third_closest_sprite == 0: return
+
+        z_values = {
+            closest_sprite: closest_sprite.z,
+            second_closest_sprite: second_closest_sprite.z,
+            third_closest_sprite: third_closest_sprite.z
+        }
+
+        print(f"1. {closest_sprite.name}: {closest_sprite.z}")
+        print(f"2. {second_closest_sprite.name}: {second_closest_sprite.z}")
+        print(f"3. {third_closest_sprite.name}: {third_closest_sprite.z}")
+
+        
+        wall_outlines = []
+        walls = []
+        for i in z_values.values():
+            if i == 6:
+                wall_outlines.append(i)
+            if i == 3:
+                walls.append(i)
+
+        other = [i for i in z_values.values() if i not in wall_outlines and i not in walls]
+        print(len(other))
+
+        if len(other) >= 1:
+            player.z = int(other[0])
             return
-        elif (closest_sprite.z in [3,6] and player.rect.center[1] < closest_sprite.rect.center[1]):
-            player.z = closest_sprite.z - 1
-            return
+        elif len(walls) > 0:
+            if player.rect.centery < list(z_values.keys())[list(z_values.values()).index(3)].rect.centery:
+                player.z = 2
+                return
+            else:
+                player.z = 3
+                return
+        elif closest_sprite.z == 6:
+                player.z = 6-2
+                return
+                # player.z = 6 - 2
+                # return
+                
+            
+
+        # if closest_sprite.z == 6 and second_closest_sprite.z == closest_sprite.z and third_closest_sprite.z != second_closest_sprite.z:
+        #     player.z = third_closest_sprite.z
+        #     return
+        # if second_closest_sprite.z == 3 and closest_sprite.z == 6 and player.rect.center[1] < second_closest_sprite.rect.center[1]:
+        #     player.z = second_closest_sprite.z - 1
+        #     return
+        # elif (closest_sprite.z in [3,6] and player.rect.center[1] < closest_sprite.rect.center[1]):
+        #     player.z = closest_sprite.z - 1
+        #     return
+        
+        
         player.z = closest_sprite.z
 
 

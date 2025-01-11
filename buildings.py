@@ -21,7 +21,7 @@ class Buildings(pygame.sprite.Sprite):
         self.type = type
         self.z = z
         self.y_sort = self.hitbox.centery + 100
-        if type == 'mart': self.door = ((self.hitbox.midbottom[0] + 150), (self.hitbox.midbottom[1]))
+        if type == 'Mart': self.door = ((self.hitbox.midbottom[0] + 140), (self.hitbox.midbottom[1]))
         
         
 
