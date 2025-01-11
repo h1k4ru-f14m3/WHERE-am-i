@@ -1,6 +1,7 @@
 import pygame
 import settings
 import os
+from music import stop_music, play_music
 from time import sleep
 
 class Menu(pygame.sprite.Group):
@@ -249,6 +250,16 @@ class button(pygame.sprite.Sprite):
         elif 'move' in self.name and mouse_hover and mouse_press:
             keybind_change(self.name)
             self.set_text(pygame.key.name(settings.config[self.name.replace('move-', '')]))
+        elif 'sound' in self.name and mouse_hover and mouse_press:
+            sleep(0.25)
+            if settings.config['sound'] == 1:
+                stop_music()
+                settings.config['sound'] = 0
+                settings.save_config('config/config.json')
+            elif settings.config['sound'] == 0:
+                play_music()
+                settings.config['sound'] = 1
+                settings.save_config('config/config.json')
 
     # Update Button
     def update(self):
