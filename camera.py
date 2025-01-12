@@ -26,7 +26,7 @@ class Camera(pygame.sprite.Group):
 
     # Very self explanatory, load the main map
     def load_main(self):
-        self.map_surf = pygame.transform.scale2x(pygame.image.load('resources/maps/test-map-7.png').convert_alpha())
+        self.map_surf = pygame.transform.scale2x(pygame.image.load('resources/maps/main-map.png').convert_alpha())
         self.map_rect = self.map_surf.get_rect(center = (0,0))
         buildings.buildall(self)
         settings.active_sprites.add(buildings.buildings_group)
