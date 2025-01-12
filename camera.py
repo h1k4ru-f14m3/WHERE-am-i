@@ -31,9 +31,9 @@ class Camera(pygame.sprite.Group):
         buildings.buildall(self)
         settings.active_sprites.add(buildings.buildings_group)
 
-    
-    # Set the player sprite's z value dynamically
-    def update_layer(self,player):
+
+    # Get Nearby Sprites
+    def get_close_sprites(self,player):
         # Prepare the integers/values for the function
         closest_distance = sys.maxsize
         second_closest_distance = sys.maxsize
@@ -55,7 +55,7 @@ class Camera(pygame.sprite.Group):
             # Pythagorean Theorem to get the distance between the player and the sprite
             distance = sqrt(x**2 + y**2)
 
-            # Get the closest sprite and the second closest sprite
+            # Get the closest sprite, second closest sprite, and third closest sprite
             if distance < closest_distance:
                 third_closest_distance = second_closest_distance
                 second_closest_distance = closest_distance
@@ -74,15 +74,25 @@ class Camera(pygame.sprite.Group):
                 third_closest_distance = distance
                 third_closest_sprite = sprite
 
-        # Give less priority to some sprites with some conditions and set the player z accordingly
+        return closest_sprite, second_closest_sprite, third_closest_sprite
+    
+
+    # Set the player sprite's z value dynamically
+    def update_layer(self,player):
+        # Get nearby sprites
+        closest_sprite, second_closest_sprite, third_closest_sprite = self.get_close_sprites(player)
+            
+        # If the nearby sprites are 0/null, return
         if closest_sprite == 0 or second_closest_sprite == 0 or third_closest_sprite == 0: return
 
+        # Get and store z values of the sprites
         z_values = {
             closest_sprite: closest_sprite.z,
             second_closest_sprite: second_closest_sprite.z,
             third_closest_sprite: third_closest_sprite.z
         }
         
+        # Check for walls and wall outlines
         wall_outlines = []
         walls = []
         for i in z_values.values():
@@ -91,8 +101,10 @@ class Camera(pygame.sprite.Group):
             if i == 3:
                 walls.append(i)
 
+        # Get the sprite(s) that aren't wall or wall outline
         other = [i for i in z_values.values() if i not in wall_outlines and i not in walls]
 
+        # Update the player z dynamically with priority over other sprite(s) that aren't wall or wall outlines
         if len(other) >= 1:
             player.z = int(other[0])
             return
@@ -106,22 +118,8 @@ class Camera(pygame.sprite.Group):
         elif closest_sprite.z == 6:
                 player.z = 6-2
                 return
-                # player.z = 6 - 2
-                # return
-                
-            
-
-        # if closest_sprite.z == 6 and second_closest_sprite.z == closest_sprite.z and third_closest_sprite.z != second_closest_sprite.z:
-        #     player.z = third_closest_sprite.z
-        #     return
-        # if second_closest_sprite.z == 3 and closest_sprite.z == 6 and player.rect.center[1] < second_closest_sprite.rect.center[1]:
-        #     player.z = second_closest_sprite.z - 1
-        #     return
-        # elif (closest_sprite.z in [3,6] and player.rect.center[1] < closest_sprite.rect.center[1]):
-        #     player.z = closest_sprite.z - 1
-        #     return
         
-        
+        # Just in case if the conditions aren't met
         player.z = closest_sprite.z
 
 
@@ -147,10 +145,9 @@ class Camera(pygame.sprite.Group):
             if player.centery < 3796 and player.centery > 300:
                 self.offset.y = -(player.center[1] - self.screen.get_size()[1] / 2)
 
+            # Render main map
             self.screen.blit(self.map_surf,self.map_rect.center + self.offset)
-
         else:
-        
             # Set the offset to achieve player centered camera
             self.offset.x = -(player.center[0] - self.screen.get_size()[0] / 2)
             self.offset.y = -(player.center[1] - self.screen.get_size()[1] / 2)

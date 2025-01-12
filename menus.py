@@ -217,6 +217,7 @@ class button(pygame.sprite.Sprite):
         self.set_text(text)
 
 
+    # Could've been in __init__ but changing the text is needed for keybind change
     def set_text(self,text):
         # Text
         if text != "None":
@@ -226,6 +227,7 @@ class button(pygame.sprite.Sprite):
             self.shadow_rect = self.shadow.get_rect(center=(self.rect.centerx+3,self.rect.centery+3))
 
 
+    # To change the button image (for the music button)
     def change_type(self,type):
         self.frames.update({
             's': pygame.image.load(os.path.join('resources', 'menu', 'static', f'{type}.png')),

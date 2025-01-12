@@ -126,8 +126,10 @@ class Player(pygame.sprite.Sprite):
             if sprite.name == 'door' and sprite.hitbox.colliderect(self.hitbox):
                 self.group.unload_map(self)
                 self.group.load_main()
+
                 self.hitbox.centerx = settings.ending[0]
                 self.hitbox.centery = settings.ending[1] + 25
+                
                 self.group.offset.x = settings.old_offset_x
                 self.group.offset.y = settings.old_offset_y
 
@@ -140,10 +142,12 @@ class Player(pygame.sprite.Sprite):
             
             # Going upstairs of a building, if upstairs exists
             elif sprite.name in ['stair', 'stair_2'] and sprite.hitbox.colliderect(self.hitbox):
+                # Unload and decide where to put the player depending on which staircase they went up
                 self.group.unload_map(self)
                 stair = 1
                 if sprite.name == 'stair_2':
                     stair = 2
+
                 if settings.current_floor == 1:
                     getin_building((self.group), self, settings.building,floor_num = settings.current_floor + 1, stair_num=stair)
                     settings.current_floor += 1
@@ -154,6 +158,7 @@ class Player(pygame.sprite.Sprite):
             
             # Going into buildings
             elif settings.onMainMap and self.hitbox.collidepoint(sprite.door):
+                # Save the position of the player in the main map and the camera offset
                 settings.ending = self.hitbox.center
                 settings.old_offset_x = self.group.offset.x
                 settings.old_offset_y = self.group.offset.y

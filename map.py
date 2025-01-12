@@ -26,9 +26,12 @@ def render_map(type,group,collision_group,floornum=0):
 
     # Load the tile layers
     for layer in mapdata.visible_tile_layers:
+        # Check if the z property is present, if so give that tile that z value
         z = settings.draw_order[f"{mapdata.layers[layer].name}"]
         if 'z' in mapdata.layers[layer].properties:
             z = float(mapdata.layers[layer].z)
+
+        # Load the tile
         for x,y,img in mapdata.layers[layer].tiles():
             GameSprite((x * 32 * 2.5, y * 32 * 2.5), img, (group), z=z)
 
@@ -36,13 +39,16 @@ def render_map(type,group,collision_group,floornum=0):
     # Load the objects
     for layer in mapdata.visible_object_groups:
         for obj in mapdata.layers[layer]:
+            # Check if there's a y sort offset property and z property in the object
             ysortoffset = 0
+            z = settings.draw_order[f"{mapdata.layers[layer].name}"]
             if 'y_sort_offset' in obj.properties:
                 ysortoffset = int(obj.y_sort_offset)
             elif 'z' in obj.properties:
-                GameSprite(((obj.x * 2.5), (obj.y * 2.5)), obj.image, (group), width=obj.width, height=obj.height, z=float(obj.z), ysort_offset=ysortoffset)
-                continue
-            GameSprite(((obj.x * 2.5), (obj.y * 2.5)), obj.image, (group), width=obj.width, height=obj.height, z=settings.draw_order[f"{mapdata.layers[layer].name}"], ysort_offset=ysortoffset)
+                z = float(obj.z)
+
+            # Load the Object
+            GameSprite(((obj.x * 2.5), (obj.y * 2.5)), obj.image, (group), width=obj.width, height=obj.height, z=z, ysort_offset=ysortoffset)
 
 
     # Load the Hitboxes and giving them names if they have one
@@ -70,7 +76,7 @@ def getin_building(group,player,type,floor_num=0,stair_num=1):
     # Render the desired map
     render_map(type,group,settings.active_sprites,floornum=floor_num)
 
-    # Decide where to put the player depending on the floor
+    # Decide where to put the player depending on the floor and stair
     destination_up = settings.markers["stair_end"]
     destination_down = settings.markers["start"]
     if stair_num == 2: 

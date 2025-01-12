@@ -30,6 +30,7 @@ class Game():
                 if event.type == pygame.QUIT:
                     settings.isPlaying = False
                     settings.running = False
+                # Checking for keyboard input to show the Pause Menu
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     self.screen.fill('black')
                     sleep(0.25)
