@@ -182,8 +182,8 @@ class button(pygame.sprite.Sprite):
         self.hasText = False
 
         # Location of button state image
-        static_file = os.path.join('resources', 'menu', 'static', f'{type}.png')
-        pressed_file = os.path.join('resources', 'menu', 'pressed', f'{type}.png')
+        static_image = os.path.join('resources', 'menu', 'static', f'{type}.png')
+        pressed_image = os.path.join('resources', 'menu', 'pressed', f'{type}.png')
 
         # If text is given
         if text != "None":
@@ -201,11 +201,11 @@ class button(pygame.sprite.Sprite):
 
         # Button state, image and position
         self.frames = {
-            's': static_file,
-            'p': pressed_file
+            's': pygame.image.load(static_image),
+            'p': pygame.image.load(pressed_image)
         }
         self.index = 's'
-        self.image = pygame.image.load(self.frames[self.index])
+        self.image = self.frames[self.index]
         self.rect = self.image.get_rect(center=(pos))
         self.set_text(text)
 
@@ -253,20 +253,20 @@ class button(pygame.sprite.Sprite):
         elif 'sound' in self.name and mouse_hover and mouse_press:
             sleep(0.25)
             if settings.config['sound'] == 1:
-                stop_music()
                 settings.config['sound'] = 0
                 settings.save_config('config/config.json')
+                stop_music()
             elif settings.config['sound'] == 0:
-                play_music()
                 settings.config['sound'] = 1
                 settings.save_config('config/config.json')
+                play_music()
 
     # Update Button
     def update(self):
         # If not label, listen for user input/mouse movement
         if self.doListen:
             self.listen()
-            self.image = pygame.image.load(self.frames[self.index])
+            self.image = self.frames[self.index]
 
         # Display/Render the button/label
         self.screen.blit(self.image,self.rect)
