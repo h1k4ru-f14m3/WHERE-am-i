@@ -48,6 +48,8 @@ markers = {
 
 
 ending = (0,0)
+old_offset_x = 0
+old_offset_y = 0
 
 # Configs
 

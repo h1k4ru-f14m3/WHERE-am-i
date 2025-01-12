@@ -15,7 +15,7 @@ class Camera(pygame.sprite.Group):
 
         # Render the main map if the player is on the main map
         if settings.onMainMap:
-            self.map_surf = pygame.transform.scale2x(pygame.image.load('resources/maps/test-map-7.png').convert_alpha())
+            self.map_surf = pygame.transform.scale2x(pygame.image.load('resources/maps/main-map.png').convert_alpha())
             self.map_rect = self.map_surf.get_rect(center = (0,0))
 
         # Initialize values to get player centered camera
@@ -82,11 +82,6 @@ class Camera(pygame.sprite.Group):
             second_closest_sprite: second_closest_sprite.z,
             third_closest_sprite: third_closest_sprite.z
         }
-
-        print(f"1. {closest_sprite.name}: {closest_sprite.z}")
-        print(f"2. {second_closest_sprite.name}: {second_closest_sprite.z}")
-        print(f"3. {third_closest_sprite.name}: {third_closest_sprite.z}")
-
         
         wall_outlines = []
         walls = []
@@ -97,7 +92,6 @@ class Camera(pygame.sprite.Group):
                 walls.append(i)
 
         other = [i for i in z_values.values() if i not in wall_outlines and i not in walls]
-        print(len(other))
 
         if len(other) >= 1:
             player.z = int(other[0])
@@ -147,18 +141,19 @@ class Camera(pygame.sprite.Group):
 
         # Check if the player is in the main map and rendering the main map if true
         if settings.onMainMap:
-
             # To Turn off player center camera at some point (Minus 400 of Original Map's X Size)
-            # if player.centerx < 3696 and player.centerx > 400:
-            #     self.offset.x = -(player.center[0] - self.screen.get_size()[0] / 2)
-            # if player.centery < 3796 and player.centery > 300:
-            #     self.offset.y = -(player.center[1] - self.screen.get_size()[1] / 2)
+            if player.centerx < 3696 and player.centerx > 400:
+                self.offset.x = -(player.center[0] - self.screen.get_size()[0] / 2)
+            if player.centery < 3796 and player.centery > 300:
+                self.offset.y = -(player.center[1] - self.screen.get_size()[1] / 2)
 
             self.screen.blit(self.map_surf,self.map_rect.center + self.offset)
+
+        else:
         
-        # Set the offset to achieve player centered camera
-        self.offset.x = -(player.center[0] - self.screen.get_size()[0] / 2)
-        self.offset.y = -(player.center[1] - self.screen.get_size()[1] / 2)
+            # Set the offset to achieve player centered camera
+            self.offset.x = -(player.center[0] - self.screen.get_size()[0] / 2)
+            self.offset.y = -(player.center[1] - self.screen.get_size()[1] / 2)
 
         # Render the sprites (Sorted by the z value first then the y_sort value)
         for sprite in sorted(self.sprites(), key=lambda sprite: (sprite.z,sprite.y_sort)):

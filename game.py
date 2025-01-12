@@ -45,7 +45,6 @@ class Game():
             # Keep updating the sprites if the player is still playing
             if settings.isPlaying:
                 self.camera.update_layer(self.player)
-                print(f"Player: {self.player.z}")
                 self.camera.update()
 
             # Update Display/Window

@@ -124,11 +124,12 @@ class Player(pygame.sprite.Sprite):
             
             # Going out of buildings
             if sprite.name == 'door' and sprite.hitbox.colliderect(self.hitbox):
-                print("1")
                 self.group.unload_map(self)
                 self.group.load_main()
                 self.hitbox.centerx = settings.ending[0]
                 self.hitbox.centery = settings.ending[1] + 25
+                self.group.offset.x = settings.old_offset_x
+                self.group.offset.y = settings.old_offset_y
 
                 settings.current_floor = 0
                 settings.stair_end = (0,0)
@@ -150,13 +151,12 @@ class Player(pygame.sprite.Sprite):
                     getin_building((self.group), self, settings.building,floor_num = settings.current_floor - 1, stair_num=stair)
                     settings.current_floor -= 1
                 
-                print("1")
             
             # Going into buildings
             elif settings.onMainMap and self.hitbox.collidepoint(sprite.door):
-                print("2")
-                print(sprite.type)
                 settings.ending = self.hitbox.center
+                settings.old_offset_x = self.group.offset.x
+                settings.old_offset_y = self.group.offset.y
 
                 if sprite.type == "House-3" or sprite.type == "Police": settings.current_floor = 1
                 getin_building((self.group), self, sprite.type,floor_num=settings.current_floor)
