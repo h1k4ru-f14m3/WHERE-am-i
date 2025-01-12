@@ -15,7 +15,7 @@ import settings
 
 
 def play_music():
-    if pygame.mixer.get_busy() or settings.config['sound'] == 0:
+    if pygame.mixer.get_busy() or settings.config['sound'] == "off":
         return
     
     menu_music = pygame.mixer.Sound('music/title-theme.mp3')

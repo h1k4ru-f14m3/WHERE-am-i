@@ -79,13 +79,20 @@ class Menu(pygame.sprite.Group):
             'left': ['move-left', 'Move Left', (355, 243), (638,243)],
             'backward': ['move-backward', 'Move Backward', (355, 323), (638,323)],
             'right': ['move-right', 'Move Right', (355, 403), (638,403)],
-            'sound': ['sound', 'Sound', (355, 483), (638,483)]
         }
+
+        # sound = {
+        #     'sound': ['sound', 'Sound', (355, 483), (638,483)]
+        # }
 
         # Initialize the labels and buttons
         for key in labels.keys():
             button(labels[key][0], 'long-button-small', labels[key][2], self, labels[key][1], listen=False)
             button(labels[key][0], 'square-button-small', labels[key][3], self, pygame.key.name(settings.config[key]), listen=True)
+
+        # Music On/Off Button and label
+        button('music', 'long-button-small', (355, 483), self, 'Music', listen=False)
+        button('music', f'music-button-{settings.config['sound']}', (638, 483), self, listen=True)
 
         # Game/Window Loop
         while settings.running and settings.onSettings:
@@ -218,6 +225,13 @@ class button(pygame.sprite.Sprite):
             self.text_rect = self.text_surf.get_rect(center=(self.rect.center))
             self.shadow_rect = self.shadow.get_rect(center=(self.rect.centerx+3,self.rect.centery+3))
 
+
+    def change_type(self,type):
+        self.frames.update({
+            's': pygame.image.load(os.path.join('resources', 'menu', 'static', f'{type}.png')),
+            'p': pygame.image.load(os.path.join('resources', 'menu', 'pressed', f'{type}.png'))
+            })
+
     
     # Listen for user input/mouse movement
     def listen(self):
@@ -250,16 +264,19 @@ class button(pygame.sprite.Sprite):
         elif 'move' in self.name and mouse_hover and mouse_press:
             keybind_change(self.name)
             self.set_text(pygame.key.name(settings.config[self.name.replace('move-', '')]))
-        elif 'sound' in self.name and mouse_hover and mouse_press:
+        elif 'music' in self.name and mouse_hover and mouse_press:
             sleep(0.25)
-            if settings.config['sound'] == 1:
-                settings.config['sound'] = 0
+            if settings.config['sound'] == "on":
+                settings.config['sound'] = "off"
                 settings.save_config('config/config.json')
+                self.change_type('music-button-off')
                 stop_music()
-            elif settings.config['sound'] == 0:
-                settings.config['sound'] = 1
+            elif settings.config['sound'] == "off":
+                settings.config['sound'] = "on"
                 settings.save_config('config/config.json')
+                self.change_type('music-button-on')
                 play_music()
+
 
     # Update Button
     def update(self):

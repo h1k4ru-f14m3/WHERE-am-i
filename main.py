@@ -14,7 +14,7 @@ game = Game(clock)
 settings.load_config("config/config.json")
 
 while settings.running:
-    if settings.config['sound'] == 1:
+    if settings.config['sound'] == "on":
         play_music()
     if settings.onMainMenu:
         main.main_menu()
