@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="21" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="97">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="21" height="11" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="99">
  <tileset firstgid="1" source="../Tilesets/RoomBuilder-32x.tsx"/>
  <tileset firstgid="392" source="../Tilesets/160x64/160x64.tsx"/>
  <tileset firstgid="395" source="../Tilesets/Interiors-32x.tsx"/>
@@ -36,7 +36,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+341,342,342,342,342,342,342,342,342,342,342,342,342,342,342,342,342,342,342,342,343
 </data>
  </layer>
  <group id="6" name="Objects">
@@ -146,7 +146,7 @@
    <object id="88" x="486.727" y="35.6364" width="107.636" height="59.8182"/>
   </objectgroup>
   <objectgroup id="13" name="Stair-Hitboxes" visible="0">
-   <object id="94" name="stair" x="416" y="96" width="64" height="64"/>
+   <object id="94" name="stair_2" x="416" y="96" width="64" height="64"/>
    <object id="95" name="stair" x="192" y="96" width="64" height="64"/>
   </objectgroup>
   <objectgroup id="14" name="Outdoor-Hitbox" visible="0">
@@ -155,6 +155,12 @@
  </group>
  <objectgroup id="9" name="Marker" visible="0">
   <object id="52" name="start" x="336.5" y="258.5">
+   <point/>
+  </object>
+  <object id="97" name="stair_end" x="224" y="192">
+   <point/>
+  </object>
+  <object id="98" name="stair_end_2" x="448" y="192">
    <point/>
   </object>
  </objectgroup>

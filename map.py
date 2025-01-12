@@ -59,33 +59,32 @@ def render_map(type,group,collision_group,floornum=0):
 
     # Load the Markers and store their values
     for marker in mapdata.get_layer_by_name("Marker"):
-        if marker.name == "start":
-            settings.starting = (marker.x * 2.5, marker.y * 2.5)
-        elif marker.name == "stair_end":
-            settings.stair_end = (marker.x * 2.5, marker.y * 2.5)
+        settings.markers[marker.name] = (marker.x * 2.5, marker.y * 2.5)
 
         
 # Function to make it easier to render maps or buildings' interiors
-def getin_building(group,player,type,floor_num=0):
+def getin_building(group,player,type,floor_num=0,stair_num=1):
     # Unload the current map
     group.unload_map(player)
-
+    
     # Render the desired map
     render_map(type,group,settings.active_sprites,floornum=floor_num)
 
     # Decide where to put the player depending on the floor
+    destination_up = settings.markers["stair_end"]
+    destination_down = settings.markers["start"]
+    if stair_num == 2: 
+        destination_up = settings.markers["stair_end_2"]
+        destination_down = settings.markers["start_2"]
+
     if floor_num == 1 and settings.current_floor == 2:
-        player.hitbox.center = (settings.stair_end)
+        player.hitbox.center = (destination_up)
     else:
-        player.hitbox.center = (settings.starting)
+        player.hitbox.center = (destination_down)
 
     # Set the booleans
     settings.onMainMap = False
     settings.inBuilding = True
     settings.building = type
     
-
-
-    
-
 

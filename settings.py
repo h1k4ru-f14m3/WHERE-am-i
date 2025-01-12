@@ -39,8 +39,14 @@ inBuilding = False
 building = "None"
 current_floor = 0
 
-stair_end = (0,0)
-starting = (0,0)
+markers = {
+    "stair_end": (0,0),
+    "stair_end_2": (0,0),
+    "start": (0,0),
+    "start_2": (0,0)
+}
+
+
 ending = (0,0)
 
 # Configs

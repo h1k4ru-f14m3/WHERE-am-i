@@ -138,13 +138,16 @@ class Player(pygame.sprite.Sprite):
                 return
             
             # Going upstairs of a building, if upstairs exists
-            elif sprite.name == 'stair' and sprite.hitbox.colliderect(self.hitbox):
+            elif sprite.name in ['stair', 'stair_2'] and sprite.hitbox.colliderect(self.hitbox):
                 self.group.unload_map(self)
+                stair = 1
+                if sprite.name == 'stair_2':
+                    stair = 2
                 if settings.current_floor == 1:
-                    getin_building((self.group), self, settings.building,floor_num = settings.current_floor + 1)
+                    getin_building((self.group), self, settings.building,floor_num = settings.current_floor + 1, stair_num=stair)
                     settings.current_floor += 1
                 else:
-                    getin_building((self.group), self, settings.building,floor_num = settings.current_floor - 1)
+                    getin_building((self.group), self, settings.building,floor_num = settings.current_floor - 1, stair_num=stair)
                     settings.current_floor -= 1
                 
                 print("1")
