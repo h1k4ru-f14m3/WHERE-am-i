@@ -9,7 +9,7 @@ import json
 # Initialize Pygame and prepare the window
 pygame.init()
 screen = pygame.display.set_mode((800,600))
-pygame.display.set_icon(pygame.image.load('resources/entities/player/detective-front-static.png').convert_alpha())
+pygame.display.set_icon(pygame.image.load('resources/entities/player/front-static.png').convert_alpha())
 pygame.display.set_caption('WHERE (am i)')
 clock = pygame.time.Clock()
 

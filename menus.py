@@ -31,7 +31,7 @@ class Menu(pygame.sprite.Group):
 
     def main_menu(self):
         # The Big Player preview Image
-        player_img = pygame.image.load('resources/entities/player/detective-front-static.png').convert_alpha()
+        player_img = pygame.image.load('resources/entities/player/front-static.png').convert_alpha()
         player_surf = pygame.transform.scale(player_img, (256,256))
         player_rect = player_surf.get_rect(center=(400,267))
 
@@ -129,7 +129,7 @@ class Menu(pygame.sprite.Group):
 
     def pause_menu(self):
         # The Big Player Preview
-        player_img = pygame.image.load('resources/entities/player/detective-front-static.png').convert_alpha()
+        player_img = pygame.image.load('resources/entities/player/front-static.png').convert_alpha()
         player_surf = pygame.transform.scale(player_img, (256,256))
         player_rect = player_surf.get_rect(center=(400,267))
 
