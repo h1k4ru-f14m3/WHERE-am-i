@@ -1,8 +1,8 @@
 import pygame
-import settings
-from game import Game
-from menus import Menu
-from music import play_music
+from modules import settings
+from modules.game import Game
+from modules.menus import Menu
+from modules.music import play_music
 import json
 
 
