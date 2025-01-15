@@ -93,7 +93,7 @@ I did not collaborate with any developers on this project. However, I would like
 Credit for the music: [@TrishaRyan](https://www.youtube.com/@TrishaRyan) on Youtube
 
 ## <ins>Note to CS50x staff</ins>
-I've used some of the suggestions given from [cs50.ai](https://cs50.ai) and also from Stack Overflow on this project. I have not them cited in the code when I wrote it and I can't remember which part of the code I used the suggestions from. That's why I am writing this note.
+I've used some of the suggestions given from [cs50.ai](https://cs50.ai) and also from Stack Overflow on this project. I didn't have them cited in the code when I wrote it and I can't remember which part of the code I used the suggestions from. That's why I am writing this note.
 
 **Video Demo**: https://www.youtube.com/watch?v=dJOEIKyUPRI
 
