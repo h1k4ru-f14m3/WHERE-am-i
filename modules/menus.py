@@ -81,10 +81,6 @@ class Menu(pygame.sprite.Group):
             'right': ['move-right', 'Move Right', (355, 403), (638,403)],
         }
 
-        # sound = {
-        #     'sound': ['sound', 'Sound', (355, 483), (638,483)]
-        # }
-
         # Initialize the labels and buttons
         for key in labels.keys():
             button(labels[key][0], 'long-button-small', labels[key][2], self, labels[key][1], listen=False)
