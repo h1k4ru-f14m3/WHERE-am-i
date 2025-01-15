@@ -28,7 +28,7 @@ Not everyone is the same so why hard code specific keybinds?
 A sense of depth in a 2d game.
 
 ## <ins>Installation</ins>
-Since this game is your generic python project, you can easily run this on your terminal.
+Since this game is your generic python project, you can easily run this on your terminal, as long as you have python installed.
 
 ## Dependencies
 - Pygame or Pygame-ce:
