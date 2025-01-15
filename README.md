@@ -27,6 +27,76 @@ Not everyone is the same so why hard code specific keybinds?
 ### Y Sort (A little wonky but works)
 A sense of depth in a 2d game.
 
+## <ins>Installation</ins>
+Since this game is your generic python project, you can easily run this on your terminal.
+
+## Dependencies
+- Pygame or Pygame-ce:
+```bash
+pip install pygame
+       
+pip install pygame-ce
+```
+
+- Pytmx:
+```bash
+pip install pytmx
+```
+
+### On Windows
+- Open the terminal 
+- Go into any directory you like
+- Clone the git project:
+```bash
+git clone https://github.com/h1k4ru-f14m3/WHERE-am-i.git
+```
+- Go into the project repository:
+```bash
+cd WHERE-am-i
+```
+- Simply run the main.py:
+```bash
+python main.py
+```
+
+### On Linux
+- Open the terminal
+- Go into any directory you like
+- Clone the git project:
+```bash
+git clone https://github.com/h1k4ru-f14m3/WHERE-am-i.git
+```
+- Go into the project repository:
+```bash
+cd WHERE-am-i
+```
+- Make a virtual enviornment for python:
+```bash
+python3 -m venv <env_name>      # Replace <env_name> with any name you like
+```
+- Activate the enviornment:
+```bash
+source <env_name>/bin/activate
+```
+- Install the dependencies
+- Run main.py:
+```bash
+python3 main.py
+```
+
+
+## <ins>Credits</ins>
+I did not collaborate with any developers on this project. However, I would like to note that:
+
+**I DO NOT OWN THE MUSIC USED IN THIS PROJECT**
+
+Credit for the music: [@TrishaRyan](https://www.youtube.com/@TrishaRyan) on Youtube
+
+## <ins>Note to CS50x staff</ins>
+I've used some of the suggestions given from [cs50.ai](https://cs50.ai) and also from Stack Overflow on this project. I have not them cited in the code when I wrote it and I can't remember which part of the code I used the suggestions from. That's why I am writing this note.
+
+**Video Demo**: https://www.youtube.com/watch?v=dJOEIKyUPRI
+
 ## <ins>File Structure</ins>
 
 The main root directory:
@@ -75,7 +145,7 @@ Resources:
 │       ├── right-static.png
 │       ├── ...
 │   ├── maps                    # Interiors for the buildings (tmx files and Tilesets)
-│   ├── menu
+│   └── menu
 │       ├── fonts               # The font used in the menus
 │       ├── pressed             # The pressed version of the buttons
 │       ├── static              # The static version or the normal state of the buttons
@@ -181,7 +251,9 @@ There are only 2 functions in this file: ```play_music()``` and ```stop_music()`
 ### ```sprites.py```
 This module is used to initialize the sprites used in the main game. It's really short so I will cut right to the chase. 
 
-This module's class: ```GameSprite()```, sets the sprite's name, image, rect, hitbox, y sort value and z value. The rect is the same as hitbox. I set hitbox the same as rect so there would be less confusion between them. Also, in ```player.py```, the player's collisions are handled with its hitbox which is not the same as its rect. The usage of the Y sort value and Z value is in the ```camera.py```.
+This module's class: ```GameSprite()```, sets the sprite's name, image, rect, hitbox, y sort value and z value. The rect is the same as hitbox. I set hitbox the same as rect so there would be less confusion between them. Also, in ```player.py```, the player's collisions are handled with its hitbox which is not the same as its rect. The usage of the Y sort value and Z value is for the draw order and rendering in ```camera.py```.
+
+*Note: The ```y_sort``` value is the y position of the sprite.*
 
 ### ```map.py```
 This module is used to render the interiors of buildings which are tmx files. I named this module ```map.py``` because this can also be used to render tmx files for custom maps which follows the following template and draw order(Last to first):
@@ -211,15 +283,120 @@ This function, like the name suggests, renders the map or the tmx file. The argu
 
 Before rendering the map, the function checks all the arguements, especially the floor_num. If the floor_num is higher than 0, a suffix is added to the file name that is going to be used to load the tmx file. Then, the tmx file is loaded using pytmx.
 
-For the layers in the tmx file, 4 for-loops are used to load since there are 4 types of layers: Tile Layers, Object Layers, Invisible Object Layers(Hitboxes), and Markers. Yes, I know it is inefficient but that was the only way I knew to load different layers. In the for-loops, I used the ```GameSprite()``` class in the ```sprites.py``` module to load the objects, tiles, and hitboxes. For the hitboxes, since they don't have a Surface or an image, I had to set the Surface of them by providing additional values for their width and height. For the markers, their positions are stored in a dictionary in the ```settings.py```.
+For the layers in the tmx file, 4 for-loops are used to load since there are 4 types of layers: Tile Layers, Object Layers, Invisible Object Layers(Hitboxes), and Markers. Yes, I know it is inefficient but that was the only way I knew to load different layers. In the for-loops, I used the ```GameSprite()``` class in the ```sprites.py``` module to load the objects, tiles, and hitboxes. For the hitboxes, since they don't have a Surface or an image, I had to set the Surface of them by providing additional values for their width and height. For the markers, their positions are stored in a dictionary in the ```settings.py``` module.
+
+*Looking back, I don't think I should've named this ```render_map``` since technically, it just just loading the map into memory not rendering it onto the screen*
+
+#### ```getin_building()```
+I made this function so that I can easily get the player in the buildings and also for code organization sake. 
+
+This function unloads the map using the ```unload_map()``` function in ```camera.py```. Then, from the player's collision, the sprite type is acquired which helps load the map using ```render_map()```. This function is also used to get upstairs of a building by passing the desired floor num in the arguements. Then, the function checks the current floor the player is in. The position of the player is acquired from the markers that ```render_map()``` acquired. If the player is going up, the player's position is set to the 'start' marker. If not, it is set to 'stair-end'.
 
 ### ```buildings.py```
+This file includes the functions to initialize and load the buildings you see on the main map into sprite groups. 
+
+#### ```class Buildings()```
+This is where the building sprites are initialized, similar to the ```GameSprite()``` class mentioned in ```sprites.py```.
+
+There are some differences between them however. This ```Buildings()``` class initialize the sprite's name, image, rect, hitbox, y sort value and z value like ```GameSprite()``` but the usage of ```GameSprites()``` were for sprites that have their own hitboxes already determined in the tmx files. That's why the rect = hitbox in ```GameSprites()```. However, you may have already realized, the main map isn't a tmx file but rather a png file. The reason was solely because when I was working on the main map, I had little to no knowledge of pygame and its capabilities yet. 
+
+Since everything is just a png file, the hitboxes weren't automatically determined. So, I had to determine them myself using the pygame's ```inflate()``` method which can be used to change the rect of the sprite, to make the hitbox. Then, the hitbox's midbottom position is set to the midbottom of the original rect so that the player will hit the bottom of the building and not hit the top of the building. 
+
+There is also a door position which gets the player into the building when it collides with it. The door position is the midbottom of the sprite's rect. For the sprites that are weird or their doors have an offset, I manually changed the door position. (Take a look at Mart in the game)
+
+#### ```build()```
+This method is outside the ```Buildings()``` class so that I can call it to initialize the buildings. This method takes the usual name and group object but the interesting ones are x_pos, y_pos, and counts. It also takes the hitbox size to be set in ```Buildings()```. The main thing it does is initialize all the buildings of a given type so that I don't need to keep repeating ```Buildings()```.
+
+Now, you might be wondering what those 'interesting' arguements are. Well, they are all lists. For simplicity, think of x_pos as the columns in the main map and the y_pos as the rows. The counts are the number of buildings in each row. For example:
+
+```python
+x_pos = [5,6,7,6]   # x positions of the buildings
+y_pos = [4,3]       # y positions of the buildings
+count = [2,2]       # the counts on each y position
+```
+
+What this function is going to do is going to loop through the y positions. Then, loop through the x positions, forming a nested loop. The outer loop is for each index of y_pos and the inner is for x_pos. If the index of x_pos loop is greater or equal to the count at the index of y_pos then break the loop for x_pos and then the loop for y_pos restarts. (In the example's first iteration of y_pos(4), when the index(i) for x_pos reaches 2 which is equal to count[0/the index of y_pos], the for-loop for x_pos is broken and the for-loop for y_pos restarts at y_pos[1] or 3.) If not, a building is initialized with the ```Buildings()``` class.
+
+*There is an external index that is keeping track of the x_pos with the resets so the x positions can be assigned correctly.*
+
+#### ```buildall()```
+Like the ```build()``` method reduces the amount of copy-paste for ```Buildings()```, this function reduces the copy-paste for ```build()```. 
+
+This function not just initializes one building, it initializes all of them in the main map. For the buildings that have no repetition, I manually initialized them with ```Buildings()``` in this function. For the buildings that have repetition, I used the ```build()```.
+
+*I'm not going to go deeper into ```buildall()``` since it is essentially just some lines of ```Buildings()``` and ```build()```, along with the some x_pos, y_pos and counts.*
+
 ### ```camera.py```
+This module is all about rendering sprites onto the screen using the ```Camera()``` class within the file.
+
+#### ```class Camera()```
+The ```Camera()``` class is a pygame sprite group. The initialization of this class is very straight forward. The class gets the display into it with ```pygame.display.get_surface()``` mentioned in ```menus.py```. Then, it checks if the user is on the main map since it is a png and not a tmx file and may cause some issues. An offset value is also initialized to achieve a player-centered camera in game.
+
+#### ```load_main()```
+This is a very small function but I figured I should mention it. This function, like the name suggests, load the main map. The reason there is a function to load the main map is because when the player goes out of buildings, since the main map isn't a tmx file, there needs to be a function to just load the main map along with its buildings/objects.
+
+#### ```unload_map()```
+This function is also relatively small and simple but it is very useful. This function unloads any map, png or tmx since everything is a sprite when it is loaded into memory. The reason I wrote this function in the ```Camera()``` class is because the sprites to render are all in here and for the hitboxes, they are stored in ```settings.py``` and they can be easily acessed.
+
+#### ```render()```
+This function is the sole function that displays everything in game, except for the menus of course. They are rendered on their own. This function renders or draws the sprites onto the screen for the main gameplay experience, sorted by their ```y_sort``` value and ```z``` value set in ```GameSprites()```. 
+
+There is also an offset that was set in the initialization of ```Camera()```. The offset is a Vector initialized with ```pygame.math```. The offset's x and y values are the player's x and y values subtracted by half of the width and height of the screen. The result is multiplied with -1. Then, during the rendering process, the offset is added to all the sprite's original positions. Basically, the code is not moving the player but rather the whole map. The player is always in the center of the screen. 
+
+The function also turn off updating the offset if the player is close to the border of the main map. The reason is that it can look very weird if it keeps updating the offset.
+
+#### ```get_close_sprite()```
+This function might stand out in the ```camera.py```. Why would one need to get the close sprites in here? Well, the reason is this is the first part of making the player's ```z``` value dynamic. 
+
+This function initializes the values for the closest sprite, the second closest and the third closest. Then, loops through all the visible sprites in ```Camera()```. Using the pythagorean theorem to find the distance between the sprite and the player, the function gets the closest sprite, second closest and third closest. After the loop, the function returns the closest, second closest, and third closest sprites.
+
+#### ```update_layer()```
+Now, after we have 3 of the closest sprites, we need to update the layer or ```z``` of the player dynamically.
+
+The ```z``` values are stored into a dictionary. Then, the function checks for wall sprites and wall outline sprites then it separtes them into their own lists. The sprites that aren't walls or wall outlines are also put into their own list. Then, using conditionals, I gave the wall outline the least priority and the sprites that aren't wall or wall outlines most priority to influence the player's z. Then, the closest sprite's ```z``` value is set to the player's ```z``` values.
+
+*Looking back to my code, I admit it was very messy.*
+
 ### ```player.py```
+This module is about everything to do with the player; the image, animation, collisions, etc.
+
+#### ```class Player()```
+The initialization of the ```Player()``` class initializes the player image, hitbox, animation frames, the movement speed, the direction vector. It also initializes the initial ```z``` value of the player along with the ```y_sort``` value for draw order. To deal with collisions, the sprite groups for them are also initialized.
+
+#### ```input()```
+This function is for checking user input. Using the ```pygame.key.get_pressed()```, which returns a list of keys along with their states; 0 for not pressed, 1 for pressed, the function gets the state of each key on the user's keyboard. Then, it checks the config for which keys to listen to for player movement. If those specific keys were pressed, the player's direction is changed based on the keys.
+
+*The direction value is a Vector from pygame. The x value is for left(-1) and right(1). The y value is for up(-1) and down(1). If there's no input, the direction is 0.*
+
+The main thing of this function is to update the direction of the player since the direction is used to update the player's position by multiplying it with the player speed in ```update()``` function of ```Player()```.
+
+#### ```animation()```
+This function, like the name suggests, animates the player. 
+
+In the initialization of the ```Player()``` class individual frames of the player are imported and stored in a dictionary; the key being the name of the direction the player is facing and the values are the frames itself stored in a list. 
+
+This function checks if the player is moving or not based on the direction set in ```input()```. If the player isn't moving, the image of the player is set to the static frame, 0, of the current direction the player is facing. 
+
+If the player is moving, an index for the player animation frames is set and a loop starts. In the loop, 0.15 is added to the animation index and resets if it reaches 5. The reason is in the lists, there are only 5 frames for each direction. The player image is set to the ```int()``` of the animation index for the direction the player is facing.
+
+#### ```collision_check()```
+This is the main function to check for collisions. There are 2 more specific functions for collisions but they are separated for code organization sake.
+
+This function loops through each sprite or hitbox in the group to check collisions for. Then, using pygame's ```colliderect()``` and ```collidepoint()``` functions, the function checks if the player is hitting a hitbox. If the hitbox is a normal one, it sets the player's position to the side of the hitbox that it hit. If the hitbox the player hit is supposed to trigger a function, like go into buildings, it triggers that function.
+
+*The way the function differenciate the hitboxes are using conditionals to check if the hitbox of the sprite is of a specific type.*
+
+#### ```update()```
+This function mainly updates the player position and image. It also updates the player's ```y_sort``` value since it is the y position of the player which may change upon movement.
+
+This function sets the ```y_sort``` value then checks for user input with ```input()```. Then, it multiplies the speed set in the initialization of ```Player()``` with the direction set in ```input()```. The result of the multiplication is added to the player position. After checking the movement, it checks for collisions. Then, after all that, it runs ```animation()``` for the player animation.
+
+
 ### ```game.py```
+This is the file where the main gameplay is located and loaded. Since I have explained everything about the functions in the main gameplay in the sections above, this will be very straight forward.
 
-## <ins>Installation</ins>
+#### ```class Game()```
+This class initializes the variables needed for the gameplay: the screen/window, the clock for controlling the fps, the main map and the player.
 
-## <ins>Credits</ins>
-
-## <ins>Note to CS50x staff</ins>
+#### ```run()```
+This function starts the game loop for the gameplay. It also listens for the ```ESC``` key to load the ```pause_menu()```. Then, it renders the sprites using ```Camera()``` class' ```render()``` function. It also runs ```update_layer()``` and ```update()``` for the player, if the user is still playing. The code after that is the norm for updating the whole display/window to render the graphics.
